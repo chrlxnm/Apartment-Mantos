@@ -5,18 +5,18 @@ import React, { useEffect } from 'react'
 import Modal from '../../components/Modal/Modal'
 import styled from 'styled-components';
 
-function EditModal({visible,handleCancel,handleOk, title, data}) {
+function EditModal({visible, handleCancel ,handleOk, title, data}) {
     const [form] = Form.useForm();
     useEffect(()=>{
         form.setFieldsValue(data)
-    },[])
+    }, [data])
+    console.log(data)
     return (
         <Modal 
         isModalVisible={visible}
         handleOk={handleOk}
         title={title}
         handleCancel={()=>{
-            form.resetFields()
             handleCancel()}}>
             <Form form={form}>
                 <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
