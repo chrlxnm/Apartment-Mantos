@@ -51,11 +51,7 @@ export const APARTMENT_STATUS_OPTION = [
   "UNAVAILABLE",
 ];
 
-export const APARTMENT_RENT_SCHEMA_OPTION = [
-  "DAILY",
-  "WEEKLY",
-  "MONTHLY",
-];
+export const APARTMENT_RENT_SCHEMA_OPTION = ["DAILY", "WEEKLY", "MONTHLY"];
 
 export const MARITAL_STATUS_OPTION = [
   "SINGLE",
@@ -78,10 +74,12 @@ export const DUMMY_LIST = [
     rentPrice: 500000,
     rentSchema: APARTMENT_RENT_SCHEMA.MONTHLY,
     sellPrice: 2000000,
+    picture:
+      "https://images.unsplash.com/photo-1600566753151-384129cf4e3e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
   },
   {
     id: 2,
-    unitCode: "A01",
+    unitCode: "A02",
     floor: 17,
     rooms: 87,
     direction: APARTMENT_DIRECTION.NORTH,
@@ -91,10 +89,12 @@ export const DUMMY_LIST = [
     rentPrice: 500000,
     rentSchema: APARTMENT_RENT_SCHEMA.MONTHLY,
     sellPrice: 2000000,
+    picture:
+      "https://images.unsplash.com/photo-1600585154166-d8897c8f930d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
   },
   {
     id: 3,
-    unitCode: "A01",
+    unitCode: "A03",
     floor: 17,
     rooms: 87,
     direction: APARTMENT_DIRECTION.NORTH,
@@ -104,10 +104,12 @@ export const DUMMY_LIST = [
     rentPrice: 500000,
     rentSchema: APARTMENT_RENT_SCHEMA.MONTHLY,
     sellPrice: 2000000,
+    picture:
+      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
   },
   {
     id: 4,
-    unitCode: "A01",
+    unitCode: "A04",
     floor: 17,
     rooms: 87,
     direction: APARTMENT_DIRECTION.NORTH,
@@ -117,10 +119,12 @@ export const DUMMY_LIST = [
     rentPrice: 500000,
     rentSchema: APARTMENT_RENT_SCHEMA.MONTHLY,
     sellPrice: 2000000,
+    picture:
+      "https://images.unsplash.com/photo-1560185007-cde436f6a4d0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
   },
   {
     id: 5,
-    unitCode: "A01",
+    unitCode: "A05",
     floor: 17,
     rooms: 87,
     direction: APARTMENT_DIRECTION.NORTH,
@@ -130,6 +134,23 @@ export const DUMMY_LIST = [
     rentPrice: 500000,
     rentSchema: APARTMENT_RENT_SCHEMA.MONTHLY,
     sellPrice: 2000000,
+    picture:
+      "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+  },
+  {
+    id: 6,
+    unitCode: "A06",
+    floor: 17,
+    rooms: 87,
+    direction: APARTMENT_DIRECTION.NORTH,
+    status: APARTMENT_STATUS.AVAILABLE,
+    balcony: true,
+    furnished: true,
+    rentPrice: 500000,
+    rentSchema: APARTMENT_RENT_SCHEMA.MONTHLY,
+    sellPrice: 2000000,
+    picture:
+      "https://images.unsplash.com/photo-1513694203232-719a280e022f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80",
   },
 ];
 
