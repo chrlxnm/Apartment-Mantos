@@ -28,8 +28,8 @@ const Home = (props) => {
     })
   }
   const handleOkModalEdit = () => {
-    setModal({
-      ...modal,
+    setModalEdit({
+      ...modalEdit,
       visible: false
     })
   }
