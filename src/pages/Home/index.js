@@ -1,8 +1,10 @@
 import { Breadcrumb, Button as ButtonAntd, Card, Col, Input as InputAntd, Pagination, Row } from "antd";
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { DUMMY_LIST } from "./../../helpers/constant";
+import DetailModal from './DetailModal';
+import EditModal from "./EditModal";
 import { GlobalWrapper } from "./../../components/Wrapper/index";
 import { fetchUnits } from "../../redux/reducer/unitsReducer";
 import styled from "styled-components";
@@ -12,25 +14,53 @@ const { Meta } = Card;
 
 const Home = (props) => {
   const state = useSelector((storedState) => storedState.unit);
-  console.log("Ini state: ", state);
+  const [modal, setModal] = useState({
+    visible: false,
+    title: 'Detail Unit',
+  })
+  const [modalEdit, setModalEdit] = useState({
+    visible: false,
+  })
+  const handleOkModal = () => {
+    setModal({
+      ...modal,
+      visible: false
+    })
+  }
+  const handleOkModalEdit = () => {
+    setModal({
+      ...modal,
+      visible: false
+    })
+  }
+  const handleCancelModal = () => {
+    setModal({
+      ...modal,
+      visible: false
+    })
+  }
   const dispatch = useDispatch();
-  //const navigate = useNavigate();
-
-  // const handlePagee = () => {
-  //   navigate("form");
-  // };
 
   useEffect(() => {
     dispatch(fetchUnits());
   }, [dispatch, state.action]);
 
-  // if (state.isLoading) {
-  //   return <p>Loading units...</p>;
-  // } else if (!state.isLoading && !Array.isArray(state.units)) {
-  //   return <p>guests not found</p>;
-  // } else {
   return (
     <>
+      <DetailModal 
+        visible={modal?.visible}
+        data={modal?.data}
+        handleCancel={handleCancelModal}
+        handleOk={handleOkModal}
+        title={modal?.title} 
+      />
+      <EditModal 
+        visible={modalEdit?.visible}
+        data={modalEdit?.data}
+        handleCancel={handleOkModalEdit}
+        handleOk={handleOkModalEdit}
+        title={modalEdit?.title} 
+      />
       <GlobalWrapper>
         <h1 className="justify-content-center align-items-center">
           Apartment Units
@@ -64,8 +94,23 @@ const Home = (props) => {
                   description="Apartment Detail Desc"
                 />
                 <Wrapper>
-                  <Button size="large" type="primary" shape="round">See Detail</Button>
-                  <Button size="large" type="warning" shape="round">Edit</Button>
+                  <Button 
+                    size="large" 
+                    type="primary" 
+                    shape="round" 
+                    onClick={()=> 
+                      setModal({
+                          visible: true,
+                          title: 'Detail Unit',
+                          data:item,
+                        })}>See Detail</Button>
+                  <Button size="large" type="warning" shape="round"
+                    onClick={()=> 
+                      setModalEdit({
+                          visible: true,
+                          title: 'Edit Unit',
+                          data:item,
+                        })}>Edit</Button>
                 </Wrapper>
               </Card>
             </Col>
