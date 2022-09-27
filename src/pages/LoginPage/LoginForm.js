@@ -3,6 +3,7 @@ import * as React from "react";
 import { Avatar, Button as ButtonAntd, Col, Form, Input as InputAntd, Row, Typography } from "antd";
 
 import { Link } from "react-router-dom";
+import { serviceLogin } from "./services";
 import styled from "styled-components";
 
 function Copyright(props) {
@@ -27,12 +28,16 @@ export default function LoginPage(props) {
   const [form] = Form.useForm();
 
   const handleSubmit = (event) => {
-    console.log({
-      username: event.name,
+    const payload = {
+      username: event.username,
       password: event.password,
-    });
-    
-    props?.setUserInfo({token:'YWRtaW46YWRtaW4='})
+    }
+    console.log();
+    serviceLogin(payload)
+    .then((response) => {
+      console.log('hehehe', response)
+      props?.setUserInfo({token:'YWRtaW46YWRtaW4='})
+    })
   };
 
 
