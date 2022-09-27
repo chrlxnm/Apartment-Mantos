@@ -5,7 +5,6 @@ import React from 'react'
 import styled from 'styled-components';
 
 function DetailModal({visible, handleCancel, handleOk, title, data}) {
-  console.log('hehehe', data)
   return (
     <Modal 
     isModalVisible={visible}
