@@ -9,22 +9,6 @@ import store from '../redux/store/index';
 
 // import https from 'https';
 
-
-// import { ERROR_MODAL, SESSION_EXPIRED, USER } from "./constants";
-
-// import { urlWithoutLoadingPopup } from "./constant/listUrlWithoutLoadingPopup";
-
-// import { clearUserFootPrint, replaceAccessToken } from "../helpers/utils";
-
-
-
-
-
-
-
-
-
-
 export const encryptStorage = new EncryptStorage('ict1234567', {
   storageType: 'localStorage'
 })
@@ -65,12 +49,13 @@ function handleError(error) {
 }
 
 export const AxiosHitServices = axios.create({
-  baseURL: URL_PREFIX,
+  // baseURL: URL_PREFIX,
   timeout: 60000,
   // httpsAgent: new https.Agent({
   //   rejectUnauthorized:false
   // }),
   headers: {
+    "access-control-allow-origin" : "*",
     'Content-Type': 'application/json',
   },
 })
