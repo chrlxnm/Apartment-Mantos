@@ -1,8 +1,8 @@
 import * as React from "react";
 
-import { Avatar, Button as ButtonAntd, Col, Form, Input as InputAntd, Row, Typography } from "antd";
+import { Avatar, Button as ButtonAntd, Carousel, Col, Form, Input as InputAntd, Row, Typography } from "antd";
 
-import { Link } from "react-router-dom";
+import { serviceLogin } from "./services";
 import styled from "styled-components";
 
 function Copyright(props) {
@@ -26,26 +26,46 @@ function Copyright(props) {
 export default function LoginPage(props) {
   const [form] = Form.useForm();
 
+  
   const handleSubmit = (event) => {
-    console.log({
-      username: event.name,
+    const payload = {
+      username: event.username,
       password: event.password,
-    });
-    
-    props?.setUserInfo({token:'YWRtaW46YWRtaW4='})
+    }
+    serviceLogin(payload)
+    .then((response) => {
+      console.log('response login', response)
+      props?.setUserInfo({token:'YWRtaW46YWRtaW4='})
+    })
   };
 
-
+  const imgCarousel = {
+    height: '100vh',
+    lineHeight: '100vh',
+  };
 
   return (
       <Row style={{ height: "100vh" }}>
         <Col span={12}>
-          <img
-            alt="background"
-           style={{height: '100vh'}}
-           src="https://i.ytimg.com/vi/ONpO_j15FD0/maxresdefault.jpg" 
-          />
+    <Carousel autoplay>
+    <div>
+      <img alt="background" style={imgCarousel} src="https://images.unsplash.com/photo-1515263487990-61b07816b324?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" />
+    </div>
+    <div>
+    <img alt="background" style={imgCarousel} src="https://images.unsplash.com/photo-1574362848149-11496d93a7c7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1084&q=80" />
+    </div>
+    <div>
+    <img alt="background" style={imgCarousel} src="https://images.unsplash.com/photo-1580041065738-e72023775cdc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" />
+    </div>
+    <div>
+    <img alt="background" style={imgCarousel} src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" />
+    </div>
+    <div>
+    <img alt="background" style={imgCarousel} src="https://images.unsplash.com/photo-1628592102751-ba83b0314276?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1397&q=80" />
+    </div>
+  </Carousel>
         </Col>
+
           <Col
             span={12}
           >
@@ -56,11 +76,12 @@ export default function LoginPage(props) {
                 layout="vertical"
                 style={{width: '80%'}}
                 autoComplete='off'>
-              <Avatar
-            size={64} src="https://joeschmoe.io/api/v1/random" />
+            <div style={{textAlign: 'center'}}>
+            <Avatar size={64} src="https://joeschmoe.io/api/v1/random" />
             <Typography component="h1" variant="h5">
               Login
             </Typography>
+            </div>
             <Form.Item 
               label='Username'
               name={'username'}

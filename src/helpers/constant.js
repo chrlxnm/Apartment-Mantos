@@ -1,5 +1,6 @@
-import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
+import { useEffect } from "react";
 
 export const APARTMENT_DIRECTION = {
   NORTH: "NORTH",
@@ -32,6 +33,37 @@ export const MARITAL_STATUS = {
   DIVORCED: "DIVORCED",
   JONES: "JONES",
 };
+export const APARTMENT_DIRECTION_OPTION = [
+  "NORTH",
+  "NORTHEAST",
+  "EAST",
+  "SOUTHEAST",
+  "SOUTH",
+  "SOUTHWEST",
+  "WEST",
+  "NORTHWEST",
+];
+
+export const APARTMENT_STATUS_OPTION = [
+  "AVAILABLE",
+  "RENTED",
+  "SOLD",
+  "UNAVAILABLE",
+];
+
+export const APARTMENT_RENT_SCHEMA_OPTION = [
+  "DAILY",
+  "WEEKLY",
+  "MONTHLY",
+];
+
+export const MARITAL_STATUS_OPTION = [
+  "SINGLE",
+  "TAKEN",
+  "MARRIED",
+  "DIVORCED",
+  "JONES",
+];
 
 export const RESIDENT = [
   {
@@ -157,6 +189,7 @@ export const DUMMY_LIST = [
   },
 ];
 
+<<<<<<< HEAD
 export const DATA_TRANSAKSI = {
   id: 1,
   unitCode: "A02",
@@ -172,3 +205,6 @@ export const DATA_TRANSAKSI = {
 };
 
 export const URL_PREFIX = "http://localhost:3344/final/";
+=======
+export const URL_PREFIX = "http://localhost:3344/";
+>>>>>>> 3d73224e0669be609b9fdaf09750257e2ba8c155

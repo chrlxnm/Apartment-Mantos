@@ -1,10 +1,13 @@
-import { Breadcrumb, Button, Card, Col, Pagination, Row } from "antd";
-import React, { Fragment, useEffect } from "react";
+import { Avatar, Breadcrumb, Button as ButtonAntd, Card, Col, Input as InputAntd, Pagination, Row, Skeleton } from "antd";
+import React, { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { DUMMY_LIST } from "./../../helpers/constant";
+import DetailModal from './DetailModal';
+import EditModal from "./EditModal";
 import { GlobalWrapper } from "./../../components/Wrapper/index";
 import { fetchUnits } from "../../redux/reducer/unitsReducer";
+import { getUnits } from './services';
 import styled from "styled-components";
 import { useNavigate } from "react-router";
 
@@ -12,40 +15,83 @@ const { Meta } = Card;
 
 const Home = (props) => {
   const state = useSelector((storedState) => storedState.unit);
-  console.log("Ini state: ", state);
+  let isLoading = useSelector(
+    (state) => state.loading.isLoading,
+  );
+  const [modal, setModal] = useState({
+    visible: false,
+    title: 'Detail Unit',
+  })
+  const [units, setUnits] = useState();
+  const [modalEdit, setModalEdit] = useState({
+    visible: false,
+  })
+  const handleOkModal = () => {
+    setModal({
+      ...modal,
+      visible: false
+    })
+  }
+  const handleOkModalEdit = () => {
+    setModalEdit({
+      ...modalEdit,
+      visible: false
+    })
+  }
+  const handleCancelModal = () => {
+    setModal({
+      ...modal,
+      visible: false
+    })
+  }
   const dispatch = useDispatch();
-  //const navigate = useNavigate();
-
-  // const handlePagee = () => {
-  //   navigate("form");
-  // };
 
   useEffect(() => {
-    dispatch(fetchUnits());
+    getUnits()
+      .then((result) => {
+        setUnits(result.data);
+      })
+      .catch(() => {
+      });
   }, [dispatch, state.action]);
 
-  // if (state.isLoading) {
-  //   return <p>Loading units...</p>;
-  // } else if (!state.isLoading && !Array.isArray(state.units)) {
-  //   return <p>guests not found</p>;
-  // } else {
   return (
     <>
-      <Breadcrumb
-        style={{
-          margin: "16px 0",
-        }}
-      >
-        <Breadcrumb.Item>Home</Breadcrumb.Item>
-        <Breadcrumb.Item>List</Breadcrumb.Item>
-        <Breadcrumb.Item>unitsReducer</Breadcrumb.Item>
-      </Breadcrumb>
+      <DetailModal 
+        visible={modal?.visible}
+        data={modal?.data}
+        handleCancel={handleCancelModal}
+        handleOk={handleOkModal}
+        title={modal?.title} 
+      />
+      <EditModal 
+        visible={modalEdit?.visible}
+        data={modalEdit?.data}
+        handleCancel={handleOkModalEdit}
+        handleOk={handleOkModalEdit}
+        title={modalEdit?.title} 
+      />
       <GlobalWrapper>
         <h1 className="justify-content-center align-items-center">
           Apartment Units
         </h1>
+        <Row style={{gap: '1rem'}}>
+          <Input placeholder="Pencarian" />
+          <Button style={{width: 240}} type='primary'> Cari </Button>
+        </Row>
         <Row gutter={16}>
-          {DUMMY_LIST?.map((item, idx) => (
+          {isLoading ?
+            ([1,2,3].map(item => <Col
+              xs={24}
+              sm={24}
+              md={12}
+              lg={8}
+              xl={8}
+              style={{ marginTop: "1rem", marginBottom: "1rem" }}
+            >
+              <Card loading={true} />
+            </Col>)) :
+          (units?.map((item, idx) => (
             <Col
               xs={24}
               sm={24}
@@ -57,7 +103,6 @@ const Home = (props) => {
             >
               <Card
                 hoverable
-                style={{ width: 240 }}
                 cover={
                   <img
                     alt="example"
@@ -70,12 +115,27 @@ const Home = (props) => {
                   description="Apartment Detail Desc"
                 />
                 <Wrapper>
-                  <Button type="primary" shape="round">Check in</Button>
-                  <Button type="warning" shape="round">Check out</Button>
+                  <Button 
+                    size="large" 
+                    type="primary" 
+                    shape="round" 
+                    onClick={()=> 
+                      setModal({
+                          visible: true,
+                          title: 'Detail Unit',
+                          data:item,
+                        })}>See Detail</Button>
+                  <Button size="large" type="warning" shape="round"
+                    onClick={()=> 
+                      setModalEdit({
+                          visible: true,
+                          title: 'Edit Unit',
+                          data:item,
+                        })}>Edit</Button>
                 </Wrapper>
               </Card>
             </Col>
-          ))}
+          )))}
         </Row>
         <Pagination
           style={{ marginBottom: "1rem" }}
@@ -92,7 +152,18 @@ const Home = (props) => {
 export default Home;
 
 const Wrapper = styled.div`
-  margin-top: 1rem;
+  margin-top: 24px;
   display: flex;
   gap: 1rem;
+  justify-content: center;
+`
+const Input = styled(InputAntd)`
+  height: 50px;
+  width: 30%;
+  border-radius: 16px;
+`
+const Button = styled(ButtonAntd)`
+  height: 50px;
+  border-radius: 16px;
+  font-weight: 600;
 `
