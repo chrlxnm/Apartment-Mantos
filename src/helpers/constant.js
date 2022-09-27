@@ -1,5 +1,6 @@
-import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
+import { useEffect } from "react";
 
 export const APARTMENT_DIRECTION = {
   NORTH: "NORTH",
@@ -32,6 +33,37 @@ export const MARITAL_STATUS = {
   DIVORCED: "DIVORCED",
   JONES: "JONES",
 };
+export const APARTMENT_DIRECTION_OPTION = [
+  "NORTH",
+  "NORTHEAST",
+  "EAST",
+  "SOUTHEAST",
+  "SOUTH",
+  "SOUTHWEST",
+  "WEST",
+  "NORTHWEST",
+];
+
+export const APARTMENT_STATUS_OPTION = [
+  "AVAILABLE",
+  "RENTED",
+  "SOLD",
+  "UNAVAILABLE",
+];
+
+export const APARTMENT_RENT_SCHEMA_OPTION = [
+  "DAILY",
+  "WEEKLY",
+  "MONTHLY",
+];
+
+export const MARITAL_STATUS_OPTION = [
+  "SINGLE",
+  "TAKEN",
+  "MARRIED",
+  "DIVORCED",
+  "JONES",
+];
 
 export const DUMMY_LIST = [
   {
