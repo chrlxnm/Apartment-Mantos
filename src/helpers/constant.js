@@ -33,6 +33,36 @@ export const MARITAL_STATUS = {
   JONES: "JONES",
 };
 
+export const RESIDENT = [
+  {
+    id: 1,
+    fullname: "Jessi",
+    email: "jessi@gmail.com",
+    phone: "636547",
+    maritalStatus: MARITAL_STATUS.SINGLE,
+    dependents: 1,
+    birthDate: "Jul 25 2000",
+  },
+  {
+    id: 2,
+    fullname: "Dodi",
+    email: "dodi@gmail.com",
+    phone: "67896688",
+    maritalStatus: MARITAL_STATUS.SINGLE,
+    dependents: 1,
+    birthDate: "Jul 25 2000",
+  },
+  {
+    id: 3,
+    fullname: "Muliadi",
+    email: "muliadi@mail.com",
+    phone: "098088",
+    maritalStatus: MARITAL_STATUS.SINGLE,
+    dependents: 1,
+    birthDate: "Jul 20 2000",
+  },
+];
+
 export const DUMMY_LIST = [
   {
     id: 1,
@@ -40,7 +70,7 @@ export const DUMMY_LIST = [
     floor: 17,
     rooms: 87,
     direction: APARTMENT_DIRECTION.NORTH,
-    status: APARTMENT_STATUS.AVAILABLE,
+    status: APARTMENT_STATUS.UNAVAILABLE,
     balcony: true,
     furnished: true,
     rentPrice: 500000,
@@ -49,7 +79,7 @@ export const DUMMY_LIST = [
   },
   {
     id: 2,
-    unitCode: "A01",
+    unitCode: "A02",
     floor: 17,
     rooms: 87,
     direction: APARTMENT_DIRECTION.NORTH,
@@ -62,7 +92,7 @@ export const DUMMY_LIST = [
   },
   {
     id: 3,
-    unitCode: "A01",
+    unitCode: "A03",
     floor: 17,
     rooms: 87,
     direction: APARTMENT_DIRECTION.NORTH,
@@ -75,7 +105,7 @@ export const DUMMY_LIST = [
   },
   {
     id: 4,
-    unitCode: "A01",
+    unitCode: "A04",
     floor: 17,
     rooms: 87,
     direction: APARTMENT_DIRECTION.NORTH,
@@ -88,11 +118,37 @@ export const DUMMY_LIST = [
   },
   {
     id: 5,
-    unitCode: "A01",
+    unitCode: "A05",
     floor: 17,
     rooms: 87,
     direction: APARTMENT_DIRECTION.NORTH,
     status: APARTMENT_STATUS.AVAILABLE,
+    balcony: true,
+    furnished: true,
+    rentPrice: 500000,
+    rentSchema: APARTMENT_RENT_SCHEMA.MONTHLY,
+    sellPrice: 2000000,
+  },
+  {
+    id: 6,
+    unitCode: "A06",
+    floor: 17,
+    rooms: 87,
+    direction: APARTMENT_DIRECTION.NORTH,
+    status: APARTMENT_STATUS.RENTED,
+    balcony: true,
+    furnished: true,
+    rentPrice: 500000,
+    rentSchema: APARTMENT_RENT_SCHEMA.MONTHLY,
+    sellPrice: 2000000,
+  },
+  {
+    id: 7,
+    unitCode: "A07",
+    floor: 17,
+    rooms: 87,
+    direction: APARTMENT_DIRECTION.NORTH,
+    status: APARTMENT_STATUS.RENTED,
     balcony: true,
     furnished: true,
     rentPrice: 500000,
