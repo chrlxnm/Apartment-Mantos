@@ -157,4 +157,18 @@ export const DUMMY_LIST = [
   },
 ];
 
+export const DATA_TRANSAKSI = {
+  id: 1,
+  unitCode: "A02",
+  floor: 17,
+  rooms: 87,
+  direction: APARTMENT_DIRECTION.NORTH,
+  status: APARTMENT_STATUS.RENTED,
+  balcony: true,
+  furnished: true,
+  rentPrice: 500000,
+  rentSchema: APARTMENT_RENT_SCHEMA.MONTHLY,
+  sellPrice: 2000000,
+};
+
 export const URL_PREFIX = "http://localhost:3344/final/";
