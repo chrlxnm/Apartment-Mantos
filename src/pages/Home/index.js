@@ -8,7 +8,7 @@ import { fetchUnits } from "../../redux/reducer/unitsReducer";
 import styled from "styled-components";
 import { useNavigate } from "react-router";
 
-const { Meta } = Card;
+const { Meta } = Card;    //meta= bawaan nodemodules antd
 
 const Home = (props) => {
   const state = useSelector((storedState) => storedState.unit);
@@ -70,8 +70,8 @@ const Home = (props) => {
                   description="Apartment Detail Desc"
                 />
                 <Wrapper>
-                  <Button type="primary" shape="round">Check in</Button>
-                  <Button type="warning" shape="round">Check out</Button>
+                  <Button type="primary" shape="round">Rent</Button>
+                  <Button type="warning" shape="round">Buy</Button>
                 </Wrapper>
               </Card>
             </Col>

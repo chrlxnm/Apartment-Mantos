@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice, createStore } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import uniqid from "uniqid";
 import * as API from "../../api/dataAPI";
 
@@ -13,6 +13,10 @@ export const fetchUnits = createAsyncThunk("units/getAll", async () => {
 
   return units;
 });
+
+// function unitsReducer(state = initialState, action) {
+//   const {type, payload} = action;
+// }
 
 // export const addLockers = createAsyncThunk("lockerss/add", async (locker) => {
 //   locker.id = uniqid();
@@ -54,6 +58,8 @@ export const unitsSlice = createSlice({
         state.isLoading = false;
         state.units = action.payload;
       });
+      // default:
+      //   return state;
     //   .addCase(addLockers.pending, (state) => {
     //     state.isLoading = true;
     //   })

@@ -3,6 +3,7 @@ import { Layout, Menu } from "antd";
 import { Logout } from './../../App';
 import PrivateRoute from './../privateRoute/index';
 import Transactions from './../../pages/Transactions/index';
+import { Link } from "react-router-dom";
 
 const { Header, Content, Footer } = Layout;
 
@@ -22,6 +23,10 @@ const LayoutComponent = (props) => {
                 <Menu.Item key="Report">Report</Menu.Item>
                 <Menu.Item key="Transactions">Transactions</Menu.Item>
             </Menu.Group>
+
+            <Nv>
+                <Nav.Link as={Link} to = "transactions">Transactions</Nav.Link>
+            </Nv>
         </Menu>
         <Logout />
         </Header>}

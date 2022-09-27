@@ -101,4 +101,79 @@ export const DUMMY_LIST = [
   },
 ];
 
+export const DUMMY_TRANSACTION = [
+  {
+    id: '1',
+    floor: '10',
+    unit: 'A01' ,
+    resident: 'ANA',
+    transactionDate: '24-09-2022',
+    rentalSchema: APARTMENT_RENT_SCHEMA.DAILY,
+    rentStartDate: '25 SEPTEMBER',
+    rentEndDate:'30 SEPTEMBER',
+    billingDate: '30 SEPTEMBER',
+    period: '5hari',
+    price: '50.000.000',
+    profit: '20.000.000'
+  },
+  {
+    id: '2',
+    floor: '10',
+    unit: 'A02' ,
+    resident: 'ANI',
+    transactionDate: '29-09-2022',
+    rentalSchema: APARTMENT_RENT_SCHEMA.MONTHLY,
+    rentStartDate: '30 SEPTEMBER',
+    rentEndDate:'02 OKTOBER',
+    billingDate: '02 OKTOBER',
+    period: '2Bulan',
+    price: '100.000.000',
+    profit: '50.000.000'
+  },
+  {
+    id: '3',
+    floor: '10',
+    unit: '10AA' ,
+    resident: 'BUDI',
+    transactionDate: '04-10-2022 ',
+    rentalSchema: APARTMENT_RENT_SCHEMA.DAILY,
+    rentStartDate: '04 OKTOBER',
+    rentEndDate:'14 OKTOBER',
+    billingDate: '04 OKTOBER',
+    period: '10hari',
+    price: '30.000.000',
+    profit: '5.000.000'
+  }
+];
+
+export const RESIDENT = [
+  {
+    id: 1,
+    fullname: "Jessi",
+    email: "jessi@gmail.com",
+    phone: "636547",
+    maritalStatus: MARITAL_STATUS.SINGLE,
+    dependents: 1,
+    birthDate: "Jul 25 2000",
+  },
+  {
+    id: 2,
+    fullname: "Dodi",
+    email: "dodi@gmail.com",
+    phone: "67896688",
+    maritalStatus: MARITAL_STATUS.SINGLE,
+    dependents: 1,
+    birthDate: "Jul 25 2000",
+  },
+  {
+    id: 3,
+    fullname: "Muliadi",
+    email: "muliadi@mail.com",
+    phone: "098088",
+    maritalStatus: MARITAL_STATUS.SINGLE,
+    dependents: 1,
+    birthDate: "Jul 20 2000",
+  },
+];
+
 export const URL_PREFIX = "http://localhost:3344/final/";
