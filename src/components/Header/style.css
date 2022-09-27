@@ -1,0 +1,21 @@
+.menu-custom .ant-menu-item-selected { 
+    background-color: #1890ff;
+    border-radius: 16px;
+    margin: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.menu-custom .ant-menu-item-active { 
+    background-color: #1890ff;
+    border-radius: 16px;
+    margin: 10px !important;
+    display: flex;
+    align-items: center;
+}
+.menu-custom .ant-menu-item { 
+    border-radius: 16px;
+    margin: 10px !important;
+    display: flex;
+    align-items: center;
+}
