@@ -1,4 +1,4 @@
-import { Breadcrumb, Button as ButtonAntd, Card, Col, Input as InputAntd, Pagination, Row } from "antd";
+import { Avatar, Breadcrumb, Button as ButtonAntd, Card, Col, Input as InputAntd, Pagination, Row, Skeleton } from "antd";
 import React, { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -16,9 +16,8 @@ const { Meta } = Card;
 const Home = (props) => {
   const state = useSelector((storedState) => storedState.unit);
   let isLoading = useSelector(
-    (state) => state.loading,
+    (state) => state.loading.isLoading,
   );
-  console.log('test red', isLoading)
   const [modal, setModal] = useState({
     visible: false,
     title: 'Detail Unit',
@@ -81,7 +80,18 @@ const Home = (props) => {
           <Button style={{width: 240}} type='primary'> Cari </Button>
         </Row>
         <Row gutter={16}>
-          {units?.map((item, idx) => (
+          {isLoading ?
+            ([1,2,3].map(item => <Col
+              xs={24}
+              sm={24}
+              md={12}
+              lg={8}
+              xl={8}
+              style={{ marginTop: "1rem", marginBottom: "1rem" }}
+            >
+              <Card loading={true} />
+            </Col>)) :
+          (units?.map((item, idx) => (
             <Col
               xs={24}
               sm={24}
@@ -125,7 +135,7 @@ const Home = (props) => {
                 </Wrapper>
               </Card>
             </Col>
-          ))}
+          )))}
         </Row>
         <Pagination
           style={{ marginBottom: "1rem" }}
