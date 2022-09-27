@@ -154,4 +154,35 @@ export const DUMMY_LIST = [
   },
 ];
 
+export const DUMMY_TRANSACTION = [
+  {
+    id: 1,
+    unit: "A01",
+    resident: "Anjasmara",
+    status: "Sold",
+    price: "550000000",
+    profit: "50000000",
+    transactionDate: "19-Sep-2022",
+    rentalScema: APARTMENT_RENT_SCHEMA.MONTHLY,
+    startDate: "20-Sep-2022",
+    endDate: "19-Mar-2022",
+    period: "6 Months",
+    billingDate: "20-Oct-2022",
+  },
+  {
+    id: 2,
+    unit: "A01",
+    resident: "Yurlanda",
+    status: "Sold",
+    price: "650000000",
+    profit: "70000000",
+    transactionDate: "19-Sep-2022",
+    rentalScema: APARTMENT_RENT_SCHEMA.MONTHLY,
+    startDate: "20-Sep-2022",
+    endDate: "19-Mar-2022",
+    period: "6 Months",
+    billingDate: "20-Oct-2022",
+  },
+];
+
 export const URL_PREFIX = "http://localhost:3344/final/";
