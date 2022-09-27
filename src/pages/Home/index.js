@@ -1,4 +1,4 @@
-import { Breadcrumb, Button, Card, Col, Pagination, Row } from "antd";
+import { Breadcrumb, Button as ButtonAntd, Card, Col, Input as InputAntd, Pagination, Row } from "antd";
 import React, { Fragment, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -31,19 +31,14 @@ const Home = (props) => {
   // } else {
   return (
     <>
-      <Breadcrumb
-        style={{
-          margin: "16px 0",
-        }}
-      >
-        <Breadcrumb.Item>Home</Breadcrumb.Item>
-        <Breadcrumb.Item>List</Breadcrumb.Item>
-        <Breadcrumb.Item>unitsReducer</Breadcrumb.Item>
-      </Breadcrumb>
       <GlobalWrapper>
         <h1 className="justify-content-center align-items-center">
           Apartment Units
         </h1>
+        <Row style={{gap: '1rem'}}>
+          <Input placeholder="Pencarian" />
+          <Button style={{width: 240}} type='primary'> Cari </Button>
+        </Row>
         <Row gutter={16}>
           {DUMMY_LIST?.map((item, idx) => (
             <Col
@@ -57,7 +52,6 @@ const Home = (props) => {
             >
               <Card
                 hoverable
-                style={{ width: 240 }}
                 cover={
                   <img
                     alt="example"
@@ -70,8 +64,8 @@ const Home = (props) => {
                   description="Apartment Detail Desc"
                 />
                 <Wrapper>
-                  <Button type="primary" shape="round">Check in</Button>
-                  <Button type="warning" shape="round">Check out</Button>
+                  <Button size="large" type="primary" shape="round">See Detail</Button>
+                  <Button size="large" type="warning" shape="round">Edit</Button>
                 </Wrapper>
               </Card>
             </Col>
@@ -92,7 +86,18 @@ const Home = (props) => {
 export default Home;
 
 const Wrapper = styled.div`
-  margin-top: 1rem;
+  margin-top: 24px;
   display: flex;
   gap: 1rem;
+  justify-content: center;
+`
+const Input = styled(InputAntd)`
+  height: 50px;
+  width: 30%;
+  border-radius: 16px;
+`
+const Button = styled(ButtonAntd)`
+  height: 50px;
+  border-radius: 16px;
+  font-weight: 600;
 `
