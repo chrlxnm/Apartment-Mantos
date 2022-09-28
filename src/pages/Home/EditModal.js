@@ -76,7 +76,7 @@ function EditModal({visible, handleCancel ,handleOk, title, data}) {
                                     name={'direction'}
                                 >
                                     {APARTMENT_DIRECTION_OPTION.map((item,idx)=>
-                                        <Select.Option value={item}>{item}</Select.Option>
+                                        <Select.Option key={idx} value={item?.value}>{item?.label}</Select.Option>
                                     )}
                                 </Select>
                         </Form.Item>
