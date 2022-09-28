@@ -149,13 +149,27 @@ export const DUMMY_TRANSACTION = [
     billingDate: '20 Oktober 2022'
   },
   {
-    id: '1',
+    id: '2',
     floor: '10',
     unit: '10AA',
     resident: "Susi",
     status: 'rented',
     price: 'IDR 500000000',
     profit: 'IDR 30.000.000',
+    transactionDate: '21 September 2022',
+    rentalSchema: 'monthly',
+    startEndDate: '21 September 2022 / 21 November 2022',
+    period: '2 months',
+    billingDate: '21 September 2022'
+  },
+  {
+    id: '3',
+    floor: '10',
+    unit: '10AA',
+    resident: "Susi",
+    status: 'rented',
+    price: 'IDR 500000000',
+    profit: 'IDR 10.000.000',
     transactionDate: '21 September 2022',
     rentalSchema: 'monthly',
     startEndDate: '21 September 2022 / 21 November 2022',

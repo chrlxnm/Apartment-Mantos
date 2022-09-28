@@ -83,6 +83,8 @@ const Transactions = () => {
             title: 'Billing Date',
             dataIndex: 'billingDate',
             key: 'billingDate',
+            sorter: (ascending, descending) => {
+                return ascending.billingDate < descending.billingDate
         },
     ]
 
