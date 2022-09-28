@@ -90,75 +90,62 @@ const Home = (props) => {
           </Button>
         </Row>
         <Row gutter={16}>
-          {isLoading
-            ? [1, 2, 3].map((item) => (
-                <Col
-                  xs={24}
-                  sm={24}
-                  md={12}
-                  lg={8}
-                  xl={8}
-                  style={{ marginTop: "1rem", marginBottom: "1rem" }}
-                >
-                  <Card loading={true} />
-                </Col>
-              ))
-            : units?.map((item, idx) => (
-                <Col
-                  xs={24}
-                  sm={24}
-                  md={12}
-                  lg={8}
-                  xl={8}
-                  key={idx}
-                  style={{ marginTop: "1rem", marginBottom: "1rem" }}
-                >
-                  <Card
-                    hoverable
-                    cover={
-                      <img
-                        alt="example"
-                        src="https://skandinavia.co.id/wp-content/uploads/2020/12/apartement.jpg"
-                      />
-                    }
-                  >
-                    <Meta
-                      title="Apartment Unit"
-                      description="Apartment Detail Desc"
-                    />
-                    <Wrapper>
-                      <Button
-                        size="large"
-                        type="primary"
-                        shape="round"
-                        onClick={() =>
-                          setModal({
-                            visible: true,
-                            title: "Detail Unit",
-                            data: item,
-                          })
-                        }
-                      >
-                        See Detail
-                      </Button>
-                      <Button
-                        size="large"
-                        type="warning"
-                        shape="round"
-                        onClick={() =>
-                          setModalEdit({
-                            visible: true,
-                            title: "Edit Unit",
-                            data: item,
-                          })
-                        }
-                      >
-                        Edit
-                      </Button>
-                    </Wrapper>
-                  </Card>
-                </Col>
-              ))}
+          {isLoading ?
+            ([1,2,3].map(item => <Col
+              xs={24}
+              sm={24}
+              md={12}
+              lg={8}
+              xl={8}
+              style={{ marginTop: "1rem", marginBottom: "1rem" }}
+            >
+              <Card loading={true} />
+            </Col>)) :
+          (units?.map((item, idx) => (
+            <Col
+              xs={24}
+              sm={24}
+              md={12}
+              lg={8}
+              xl={8}
+              key={idx}
+              style={{ marginTop: "1rem", marginBottom: "1rem" }}
+            >
+              <Card
+                hoverable
+                cover={
+                  <img
+                    alt="example"
+                    src="https://skandinavia.co.id/wp-content/uploads/2020/12/apartement.jpg"
+                  />
+                }
+              >
+                <Meta
+                  title={<h2>Apartment Unit : {item?.unitCode}</h2>}
+                  description={<h3>Status : {item?.status}</h3>} 
+                />
+                <Wrapper>
+                  <Button 
+                    size="large" 
+                    type="primary" 
+                    shape="round" 
+                    onClick={()=> 
+                      setModal({
+                          visible: true,
+                          title: 'Detail Unit',
+                          data:item,
+                        })}>See Detail</Button>
+                  <Button size="large" type="warning" shape="round"
+                    onClick={()=> 
+                      setModalEdit({
+                          visible: true,
+                          title: 'Edit Unit',
+                          data:item,
+                        })}>Edit</Button>
+                </Wrapper>
+              </Card>
+            </Col>
+          )))}
         </Row>
         <Pagination
           style={{ marginBottom: "1rem" }}
