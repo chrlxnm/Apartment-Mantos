@@ -1,4 +1,5 @@
 import {
+  Avatar,
   Breadcrumb,
   Button as ButtonAntd,
   Card,
@@ -6,6 +7,7 @@ import {
   Input as InputAntd,
   Pagination,
   Row,
+  Skeleton,
 } from "antd";
 import React, { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -15,6 +17,7 @@ import DetailModal from "./DetailModal";
 import EditModal from "./EditModal";
 import { GlobalWrapper } from "./../../components/Wrapper/index";
 import { fetchUnits } from "../../redux/reducer/unitsReducer";
+import { getUnits } from "./services";
 import styled from "styled-components";
 import { useNavigate } from "react-router";
 
@@ -22,10 +25,12 @@ const { Meta } = Card;
 
 const Home = (props) => {
   const state = useSelector((storedState) => storedState.unit);
+  let isLoading = useSelector((state) => state.loading.isLoading);
   const [modal, setModal] = useState({
     visible: false,
     title: "Detail Unit",
   });
+  const [units, setUnits] = useState();
   const [modalEdit, setModalEdit] = useState({
     visible: false,
   });
@@ -50,7 +55,11 @@ const Home = (props) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchUnits());
+    getUnits()
+      .then((result) => {
+        setUnits(result.data);
+      })
+      .catch(() => {});
   }, [dispatch, state.action]);
 
   return (
@@ -81,54 +90,75 @@ const Home = (props) => {
           </Button>
         </Row>
         <Row gutter={16}>
-          {DUMMY_LIST?.map((item, idx) => (
-            <Col
-              xs={24}
-              sm={24}
-              md={12}
-              lg={8}
-              xl={8}
-              key={idx}
-              style={{ marginTop: "1rem", marginBottom: "1rem" }}
-            >
-              <Card hoverable cover={<img alt="example" src={item.picture} />}>
-                <Meta
-                  title="Apartment Unit"
-                  description="Apartment Detail Desc"
-                />
-                <Wrapper>
-                  <Button
-                    size="large"
-                    type="primary"
-                    shape="round"
-                    onClick={() =>
-                      setModal({
-                        visible: true,
-                        title: "Detail Unit",
-                        data: item,
-                      })
+          {isLoading
+            ? [1, 2, 3].map((item) => (
+                <Col
+                  xs={24}
+                  sm={24}
+                  md={12}
+                  lg={8}
+                  xl={8}
+                  style={{ marginTop: "1rem", marginBottom: "1rem" }}
+                >
+                  <Card loading={true} />
+                </Col>
+              ))
+            : units?.map((item, idx) => (
+                <Col
+                  xs={24}
+                  sm={24}
+                  md={12}
+                  lg={8}
+                  xl={8}
+                  key={idx}
+                  style={{ marginTop: "1rem", marginBottom: "1rem" }}
+                >
+                  <Card
+                    hoverable
+                    cover={
+                      <img
+                        alt="example"
+                        src="https://skandinavia.co.id/wp-content/uploads/2020/12/apartement.jpg"
+                      />
                     }
                   >
-                    See Detail
-                  </Button>
-                  <Button
-                    size="large"
-                    type="warning"
-                    shape="round"
-                    onClick={() =>
-                      setModalEdit({
-                        visible: true,
-                        title: "Edit Unit",
-                        data: item,
-                      })
-                    }
-                  >
-                    Edit
-                  </Button>
-                </Wrapper>
-              </Card>
-            </Col>
-          ))}
+                    <Meta
+                      title="Apartment Unit"
+                      description="Apartment Detail Desc"
+                    />
+                    <Wrapper>
+                      <Button
+                        size="large"
+                        type="primary"
+                        shape="round"
+                        onClick={() =>
+                          setModal({
+                            visible: true,
+                            title: "Detail Unit",
+                            data: item,
+                          })
+                        }
+                      >
+                        See Detail
+                      </Button>
+                      <Button
+                        size="large"
+                        type="warning"
+                        shape="round"
+                        onClick={() =>
+                          setModalEdit({
+                            visible: true,
+                            title: "Edit Unit",
+                            data: item,
+                          })
+                        }
+                      >
+                        Edit
+                      </Button>
+                    </Wrapper>
+                  </Card>
+                </Col>
+              ))}
         </Row>
         <Pagination
           style={{ marginBottom: "1rem" }}

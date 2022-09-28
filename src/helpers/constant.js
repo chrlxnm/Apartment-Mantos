@@ -185,4 +185,4 @@ export const DUMMY_TRANSACTION = [
   },
 ];
 
-export const URL_PREFIX = "http://localhost:3344/final/";
+export const URL_PREFIX = "http://localhost:3344/";
