@@ -1,6 +1,11 @@
 import "./style.css";
 
-import { FileOutlined, UserOutlined } from "@ant-design/icons";
+import {
+  FileOutlined,
+  UserOutlined,
+  DollarCircleOutlined,
+  LogoutOutlined,
+} from "@ant-design/icons";
 import { Layout, Menu } from "antd";
 import {
   MdOutlineDashboard,
@@ -42,7 +47,7 @@ const HeaderComponent = ({ onClick, setUserInfo }) => {
           },
           {
             key: "transactions",
-            icon: <FileOutlined />,
+            icon: <DollarCircleOutlined />,
             label: <Link to="transactions">Transactions</Link>,
           },
           {
@@ -59,6 +64,7 @@ const HeaderComponent = ({ onClick, setUserInfo }) => {
         }}
       >
         <Button type="danger" shape="round">
+          <LogoutOutlined />
           Logout
         </Button>
       </Link>
