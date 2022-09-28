@@ -1,4 +1,4 @@
-import { Breadcrumb, Button as ButtonAntd, Card, Col, Input as InputAntd, Pagination, Row } from "antd";
+import { Avatar, Breadcrumb, Button as ButtonAntd, Card, Col, Input as InputAntd, Pagination, Row, Skeleton } from "antd";
 import React, { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -7,6 +7,7 @@ import DetailModal from './DetailModal';
 import EditModal from "./EditModal";
 import { GlobalWrapper } from "./../../components/Wrapper/index";
 import { fetchUnits } from "../../redux/reducer/unitsReducer";
+import { getUnits } from './services';
 import styled from "styled-components";
 import { useNavigate } from "react-router";
 
@@ -14,10 +15,14 @@ const { Meta } = Card;
 
 const Home = (props) => {
   const state = useSelector((storedState) => storedState.unit);
+  let isLoading = useSelector(
+    (state) => state.loading.isLoading,
+  );
   const [modal, setModal] = useState({
     visible: false,
     title: 'Detail Unit',
   })
+  const [units, setUnits] = useState();
   const [modalEdit, setModalEdit] = useState({
     visible: false,
   })
@@ -42,7 +47,12 @@ const Home = (props) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchUnits());
+    getUnits()
+      .then((result) => {
+        setUnits(result.data);
+      })
+      .catch(() => {
+      });
   }, [dispatch, state.action]);
 
   return (
@@ -70,7 +80,18 @@ const Home = (props) => {
           <Button style={{width: 240}} type='primary'> Cari </Button>
         </Row>
         <Row gutter={16}>
-          {DUMMY_LIST?.map((item, idx) => (
+          {isLoading ?
+            ([1,2,3].map(item => <Col
+              xs={24}
+              sm={24}
+              md={12}
+              lg={8}
+              xl={8}
+              style={{ marginTop: "1rem", marginBottom: "1rem" }}
+            >
+              <Card loading={true} />
+            </Col>)) :
+          (units?.map((item, idx) => (
             <Col
               xs={24}
               sm={24}
@@ -90,8 +111,8 @@ const Home = (props) => {
                 }
               >
                 <Meta
-                  title="Apartment Unit"
-                  description="Apartment Detail Desc"
+                  title={<h2>Apartment Unit : {item?.unitCode}</h2>}
+                  description={<h3>Status : {item?.status}</h3>} 
                 />
                 <Wrapper>
                   <Button 
@@ -114,7 +135,7 @@ const Home = (props) => {
                 </Wrapper>
               </Card>
             </Col>
-          ))}
+          )))}
         </Row>
         <Pagination
           style={{ marginBottom: "1rem" }}
