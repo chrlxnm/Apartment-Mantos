@@ -1,4 +1,4 @@
-import { requestDone, requesting } from '../redux/action/generalAction';
+import { requestDone, requesting, showModal } from '../redux/action/generalAction';
 
 import { EncryptStorage } from 'encrypt-storage';
 import {
@@ -21,16 +21,11 @@ function handleError(error) {
   if (error.response) {
     const { message } = error?.response?.data
       if (message && message !== null) {
-        // store.dispatch(
-        //   showModal({
-        //     type: ERROR_MODAL,
-        //     title: 'ERROR',
-        //     message: 'Bad Request',
-        //     onConfirm: () => {
-        //       closeModal()
-        //     }
-        //   })
-        // );
+        store.dispatch(
+          showModal({
+            message: message || 'Fetch Error, Please call admin !',
+          })
+        );
       
   } else {
       // store.dispatch(

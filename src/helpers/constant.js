@@ -34,14 +34,38 @@ export const MARITAL_STATUS = {
   JONES: "JONES",
 };
 export const APARTMENT_DIRECTION_OPTION = [
-  "NORTH",
-  "NORTHEAST",
-  "EAST",
-  "SOUTHEAST",
-  "SOUTH",
-  "SOUTHWEST",
-  "WEST",
-  "NORTHWEST",
+  {
+    value: 0,
+    label: "NORTH"
+  },
+  {
+    value: 1,
+    label: "NORTHEAST",
+  },
+  {
+    value: 2,
+    label: "EAST"
+  },
+  {
+    value: 3,
+    label: "SOUTHEAST"
+  },
+  {
+    value: 4,
+    label: "SOUTH"
+  },
+  {
+    value: 5,
+    label: "SOUTHWEST"
+  },
+  {
+    value: 6,
+    label: "WEST"
+  },
+  {
+    value: 7,
+    label: "NORTHWEST"
+  }
 ];
 
 export const APARTMENT_STATUS_OPTION = [
