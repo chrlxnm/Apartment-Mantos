@@ -1,4 +1,4 @@
-import { REQUESTING, REQUEST_DONE } from "./actionTypes";
+import { HIDE_MODAL, REQUESTING, REQUEST_DONE, SHOW_MODAL } from "./actionTypes";
 
 function requesting() {
   return {
@@ -12,4 +12,18 @@ function requestDone() {
   }
 }
 
-export { requesting, requestDone };
+
+function showModal(payload) {
+  return {
+    type: SHOW_MODAL,
+    payload
+  }
+}
+
+function hideModal() {
+  return {
+    type: HIDE_MODAL,
+  }
+}
+
+export { requesting, requestDone, showModal, hideModal };

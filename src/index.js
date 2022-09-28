@@ -2,6 +2,7 @@ import './index.css';
 
 import App from './App';
 import AppErrorBoundary from './pages/AppErrorBoundary';
+import AppFetchErrorProvider from './components/AppFetchError';
 import AppLoadingProvider from './components/AppLoading';
 import { Provider } from 'react-redux';
 import React from 'react';
@@ -14,7 +15,9 @@ root.render(
     <Provider store={store}>
       <AppErrorBoundary>
         <AppLoadingProvider>
+          <AppFetchErrorProvider>
             <App />
+          </AppFetchErrorProvider>
         </AppLoadingProvider>
       </AppErrorBoundary>
     </Provider>
