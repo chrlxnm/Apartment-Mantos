@@ -143,6 +143,34 @@ export const DUMMY_TRANSACTION = [
     period: '10hari',
     price: '30.000.000',
     profit: '5.000.000'
+  },
+  {
+    id: '4',
+    floor: '10',
+    unit: '10AB' ,
+    resident: 'DION',
+    transactionDate: '08-10-2022 ',
+    rentalSchema: APARTMENT_RENT_SCHEMA.MONTHLY,
+    rentStartDate: '10 OKTOBER',
+    rentEndDate:'10 NOVEMBER',
+    billingDate: '10 OKTOBER',
+    period: '1Bulan',
+    price: '60.000.000',
+    profit: '4.000.000'
+  },
+  {
+    id: '5',
+    floor: '10',
+    unit: '10BB' ,
+    resident: 'DIAN',
+    transactionDate: '10-10-2022 ',
+    rentalSchema: APARTMENT_RENT_SCHEMA.MONTHLY,
+    rentStartDate: '30 SEPTEMBER',
+    rentEndDate:'30 OKTOBER',
+    billingDate: '30 SEPTEMBER',
+    period: '1Bulan',
+    price: '100.000.000',
+    profit: '50.000.000'
   }
 ];
 
