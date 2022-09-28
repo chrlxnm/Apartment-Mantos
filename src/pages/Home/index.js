@@ -198,12 +198,7 @@ const Home = (props) => {
                 >
                   <Card
                     hoverable
-                    cover={
-                      <img
-                        alt="example"
-                        src="https://skandinavia.co.id/wp-content/uploads/2020/12/apartement.jpg"
-                      />
-                    }
+                    cover={<img alt="example" src={item.picture} />}
                   >
                     <Meta
                       title={<h2>Apartment Unit : {item?.unitCode}</h2>}
