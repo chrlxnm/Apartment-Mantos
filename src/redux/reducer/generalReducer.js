@@ -26,7 +26,7 @@ export const generalReducer = (state = initialState, action) => {
             modal: {
                 ...state.modal,
                 visible: true,
-                message: action.payload
+                message: action?.payload?.message
             }
         };
         case HIDE_MODAL:

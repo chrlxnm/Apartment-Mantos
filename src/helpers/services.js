@@ -21,6 +21,7 @@ function handleError(error) {
   if (error.response) {
     const { message } = error?.response?.data
       if (message && message !== null) {
+        console.log('cek me', message)
         store.dispatch(
           showModal({
             message: message || 'Fetch Error, Please call admin !',

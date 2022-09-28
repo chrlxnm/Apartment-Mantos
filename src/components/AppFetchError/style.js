@@ -5,5 +5,5 @@ export const AppFetchErrorWrapper = styled(Modal)`
   border-radius: 12px;
   overflow: auto;
   padding-bottom: 0px;
-  width: max-content;
+  width: max-content !important;
 `;
