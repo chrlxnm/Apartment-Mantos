@@ -36,7 +36,6 @@ function App() {
   if (!userInfo) {
     return <LoginPage setUserInfo={setUserInfo} />;
   }
-
   return (
     <Router>
       <Switch>

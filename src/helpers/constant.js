@@ -1,5 +1,6 @@
-import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
+import { useEffect } from "react";
 
 export const APARTMENT_DIRECTION = {
   NORTH: "NORTH",
@@ -32,6 +33,37 @@ export const MARITAL_STATUS = {
   DIVORCED: "DIVORCED",
   JONES: "JONES",
 };
+export const APARTMENT_DIRECTION_OPTION = [
+  "NORTH",
+  "NORTHEAST",
+  "EAST",
+  "SOUTHEAST",
+  "SOUTH",
+  "SOUTHWEST",
+  "WEST",
+  "NORTHWEST",
+];
+
+export const APARTMENT_STATUS_OPTION = [
+  "AVAILABLE",
+  "RENTED",
+  "SOLD",
+  "UNAVAILABLE",
+];
+
+export const APARTMENT_RENT_SCHEMA_OPTION = [
+  "DAILY",
+  "WEEKLY",
+  "MONTHLY",
+];
+
+export const MARITAL_STATUS_OPTION = [
+  "SINGLE",
+  "TAKEN",
+  "MARRIED",
+  "DIVORCED",
+  "JONES",
+];
 
 export const DUMMY_LIST = [
   {
@@ -105,103 +137,51 @@ export const DUMMY_TRANSACTION = [
   {
     id: '1',
     floor: '10',
-    unit: 'A01' ,
-    resident: 'ANA',
-    transactionDate: '24-09-2022',
-    rentalSchema: APARTMENT_RENT_SCHEMA.DAILY,
-    rentStartDate: '25 SEPTEMBER',
-    rentEndDate:'30 SEPTEMBER',
-    billingDate: '30 SEPTEMBER',
-    period: '5hari',
-    price: '50.000.000',
-    profit: '20.000.000'
+    unit: '10AA',
+    resident: "Paijo",
+    status: 'sold',
+    price: 'IDR 500000000',
+    profit: 'IDR 50.000.000',
+    transactionDate: '19 September 2022',
+    rentalSchema: 'monthly',
+    startEndDate: '20September 2022 / 19 Oktober 2022',
+    period: '1 months',
+    billingDate: '20 Oktober 2022'
   },
   {
-    id: '2',
+    id: '1',
     floor: '10',
-    unit: 'A02' ,
-    resident: 'ANI',
-    transactionDate: '29-09-2022',
-    rentalSchema: APARTMENT_RENT_SCHEMA.MONTHLY,
-    rentStartDate: '30 SEPTEMBER',
-    rentEndDate:'02 OKTOBER',
-    billingDate: '02 OKTOBER',
-    period: '2Bulan',
-    price: '100.000.000',
-    profit: '50.000.000'
-  },
-  {
-    id: '3',
-    floor: '10',
-    unit: '10AA' ,
-    resident: 'BUDI',
-    transactionDate: '04-10-2022 ',
-    rentalSchema: APARTMENT_RENT_SCHEMA.DAILY,
-    rentStartDate: '04 OKTOBER',
-    rentEndDate:'14 OKTOBER',
-    billingDate: '04 OKTOBER',
-    period: '10hari',
-    price: '30.000.000',
-    profit: '5.000.000'
-  },
-  {
-    id: '4',
-    floor: '10',
-    unit: '10AB' ,
-    resident: 'DION',
-    transactionDate: '08-10-2022 ',
-    rentalSchema: APARTMENT_RENT_SCHEMA.MONTHLY,
-    rentStartDate: '10 OKTOBER',
-    rentEndDate:'10 NOVEMBER',
-    billingDate: '10 OKTOBER',
-    period: '1Bulan',
-    price: '60.000.000',
-    profit: '4.000.000'
-  },
-  {
-    id: '5',
-    floor: '10',
-    unit: '10BB' ,
-    resident: 'DIAN',
-    transactionDate: '10-10-2022 ',
-    rentalSchema: APARTMENT_RENT_SCHEMA.MONTHLY,
-    rentStartDate: '30 SEPTEMBER',
-    rentEndDate:'30 OKTOBER',
-    billingDate: '30 SEPTEMBER',
-    period: '1Bulan',
-    price: '100.000.000',
-    profit: '50.000.000'
+    unit: '10AA',
+    resident: "Susi",
+    status: 'rented',
+    price: 'IDR 500000000',
+    profit: 'IDR 30.000.000',
+    transactionDate: '21 September 2022',
+    rentalSchema: 'monthly',
+    startEndDate: '21 September 2022 / 21 November 2022',
+    period: '2 months',
+    billingDate: '21 September 2022'
   }
-];
-
+]
 export const RESIDENT = [
   {
     id: 1,
-    fullname: "Jessi",
+    fullName: "Jessi",
     email: "jessi@gmail.com",
-    phone: "636547",
+    phone: "63547",
     maritalStatus: MARITAL_STATUS.SINGLE,
     dependents: 1,
     birthDate: "Jul 25 2000",
   },
   {
     id: 2,
-    fullname: "Dodi",
+    fullName: "Dodi",
     email: "dodi@gmail.com",
     phone: "67896688",
     maritalStatus: MARITAL_STATUS.SINGLE,
     dependents: 1,
     birthDate: "Jul 25 2000",
   },
-  {
-    id: 3,
-    fullname: "Muliadi",
-    email: "muliadi@mail.com",
-    phone: "098088",
-    maritalStatus: MARITAL_STATUS.SINGLE,
-    dependents: 1,
-    birthDate: "Jul 20 2000",
-  },
-];
+]
 
-export const URL_PREFIX = "http://localhost:3344/final/";
+export const URL_PREFIX = "http://localhost:3344/";

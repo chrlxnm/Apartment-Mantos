@@ -4,16 +4,16 @@ import { useState } from "react";
 export function useUserInfo() {
 
     const getUserInfo = () => {
-      // const userInfoString = encryptStorage.getItem('loginToken');
-      // const userUserInfo = JSON.parse(userInfoString);
-      return null //userUserInfo
+      const userInfoString = encryptStorage.getItem('loginToken');
+      const userUserInfo = userInfoString;
+      return userUserInfo
     };
   
     const [userInfo, setUserInfo] = useState(getUserInfo());
   
     const saveUserInfo = userUserInfo => {
-        // encryptStorage.setItem('loginToken', JSON.stringify(userUserInfo));
-        // sessionStorage.setItem('loginToken', JSON.stringify(userUserInfo));
+        encryptStorage.setItem('loginToken', userUserInfo);
+        sessionStorage.setItem('loginToken', userUserInfo);
         setUserInfo(userUserInfo);
     };
   

@@ -9,7 +9,6 @@ const { Header, Content, Footer } = Layout;
 
    
 const LayoutComponent = (props) => {
-    console.log('hahha', props?.element)
     return(
     <Layout className="App layout">
         {window.location.pathname !=='/login' && <Header>

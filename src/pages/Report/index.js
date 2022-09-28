@@ -1,3 +1,6 @@
+import './style.css'
+
+import { DUMMY_LIST } from './../../helpers/constant';
 import { GlobalWrapper } from '../../components/Wrapper';
 import React from 'react';
 import { Table } from 'antd';
@@ -9,6 +12,7 @@ const Report = () => {
             title: '#',
             dataIndex: '#',
             key: '#',
+            render : (record,item,i) => <p>{i+1}</p>
         },
         {
             title: 'Floor',
@@ -17,8 +21,8 @@ const Report = () => {
         },
         {
             title: 'Unit',
-            dataIndex: 'unit',
-            key: 'unit',
+            dataIndex: 'unitCode',
+            key: 'unitCode',
         },
         {
             title: 'Status',
@@ -27,18 +31,18 @@ const Report = () => {
         },
         {
             title: 'Price',
-            dataIndex: 'price',
-            key: 'price',
+            dataIndex: 'sellPrice',
+            key: 'sellPrice',
         },
         {
             title: 'Rental Price',
-            dataIndex: 'rentalPrice',
-            key: 'rentalPrice',
+            dataIndex: 'rentPrice',
+            key: 'rentPrice',
         },
         {
             title: 'Rental Schema',
-            dataIndex: 'rentalSchema',
-            key: 'rentalSchema',
+            dataIndex: 'rentSchema',
+            key: 'rentSchema',
         },
         {
             title: 'Details',
@@ -58,6 +62,7 @@ const Report = () => {
         <GlobalWrapper>
             <Table 
                 columns={column}
+                dataSource={DUMMY_LIST}
             />
         </GlobalWrapper>
     );

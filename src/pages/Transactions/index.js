@@ -53,14 +53,13 @@ const Transactions = () => {
             dataIndex: 'profit',
             key: 'profit',
             sorter: (ascending, descending) => {
-                return ascending.profit > descending.profit
+                return ascending.profit < descending.profit
             }
         },
         {
             title: 'Transaction Date',
             dataIndex: 'transactionDate',
             key: 'transactionDate',
-            sorter: (a,b) => (a.transactionDate).unix() - (b.transactionDate).unix()
         },
         {
             title: 'Rental Schema',
@@ -77,7 +76,7 @@ const Transactions = () => {
             dataIndex: 'period',
             key: 'period',
             sorter: (ascending, descending) => {
-                return ascending.period > descending.period
+                return ascending.period < descending.period
             }
         },
         {

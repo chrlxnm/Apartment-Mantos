@@ -1,11 +1,14 @@
+import { combineReducers, createStore } from "redux";
+
 import { configureStore } from "@reduxjs/toolkit";
-import { createStore } from "redux";
+import { generalReducer } from "../reducer/generalReducer";
 import { unitsSlice } from "../reducer/unitsReducer";
 
-const store = configureStore({
-  reducer: {
-    unit: unitsSlice.reducer,
-  },
+const appRedux = combineReducers({
+  unit: unitsSlice.reducer,
+  loading: generalReducer,
 });
+
+const store = createStore(appRedux);
 
 export default store;
