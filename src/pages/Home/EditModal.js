@@ -1,6 +1,17 @@
-import { APARTMENT_DIRECTION_OPTION, APARTMENT_RENT_SCHEMA_OPTION, APARTMENT_STATUS_OPTION } from './../../helpers/constant';
-import { Button, Col, Form, Input as InputAntd, Row, Select as SelectAntd } from 'antd'
-import React, { useEffect } from 'react'
+import {
+  APARTMENT_DIRECTION_OPTION,
+  APARTMENT_RENT_SCHEMA_OPTION,
+  APARTMENT_STATUS_OPTION,
+} from "./../../helpers/constant";
+import {
+  Button,
+  Col,
+  Form,
+  Input as InputAntd,
+  Row,
+  Select as SelectAntd,
+} from "antd";
+import React, { useEffect } from "react";
 
 import Modal from '../../components/Modal/Modal'
 import styled from 'styled-components';
@@ -210,17 +221,16 @@ function EditModal({visible, handleCancel ,handleOk, title, data}) {
 
 export default EditModal;
 
-
 const Select = styled(SelectAntd)`
   width: 100% !important;
-  &.ant-select:not(.ant-select-customize-input) .ant-select-selector{
+  &.ant-select:not(.ant-select-customize-input) .ant-select-selector {
     height: 40px !important;
     border-radius: 6px !important;
     align-items: center;
   }
-`
+`;
 
 const Input = styled(InputAntd)`
-height: 40px !important;
+  height: 40px !important;
   border-radius: 6px !important;
-`
+`;

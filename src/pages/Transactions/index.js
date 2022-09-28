@@ -37,10 +37,9 @@ const Transactions = () => {
     getUnits()
     .then((result) => {
       setUnits(result.data);
-      dataPage(result.data, page);
     })
     .catch(() => {});
-  }, [dispatch, state?.action]);
+  }, []);
 
   const getDetailUnit = (id) => {
     let temp = units.filter((item)=> item.id === id)
@@ -68,6 +67,13 @@ const Transactions = () => {
       title: "Resident ID",
       dataIndex: "residentId",
       key: "residentId",
+      render: (item, record) => (
+      <p style={{ cursor: 'pointer', textDecorationLine: 'underline', color: '#0062A6' }} onClick={()=> 
+        setModal({...modal, 
+          visible:true,
+          data: getDetailUnit(item)})}
+        >{item}
+        </p>)
     },
     {
       title: "Transaction Date",

@@ -42,7 +42,7 @@ const Report = () => {
         setResidents(result.data);
       })
       .catch(() => {});
-  }, [dispatch, state?.action]);
+  }, [dispatch, modal]);
 console.log('resident', residents)
   const column = [
     {

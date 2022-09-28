@@ -11,7 +11,7 @@ function ModalAction({visible, type, data, residents ,handleOk, handleCancel, ti
 
     let today = moment();
     const onFinish = (res) => {
-        console.log('hehehe', data,  res?.startDate?.diff(res?.endDate, 'days'))
+        form.resetFields()
         const calculateProfit = (type) => {
             if(type==="rental") {
                 let price = type==='rental' ? data?.rentPrice : data?.sellPrice;
@@ -36,11 +36,11 @@ function ModalAction({visible, type, data, residents ,handleOk, handleCancel, ti
             ...data,
             status : type==='rental' ? 'RENTED' : 'SOLD'
         }
+        handleOk()
         sellService(payload)
         .then(() => {
             updateUnits(pay2)
             .then(() => {
-                handleOk()
             })
         })
     }
