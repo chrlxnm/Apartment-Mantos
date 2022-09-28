@@ -139,13 +139,13 @@ export const DUMMY_TRANSACTION = [
     floor: '10',
     unit: '10AA',
     resident: "Paijo",
-    status: 'sold',
+    status: 'SOLD',
     price: 'IDR 500000000',
     profit: 'IDR 50.000.000',
     transactionDate: '19 September 2022',
-    rentalSchema: 'monthly',
-    startEndDate: '20September 2022 / 19 Oktober 2022',
-    period: '1 months',
+    rentalSchema: '-',
+    startEndDate: '-',
+    period: '-',
     billingDate: '20 Oktober 2022'
   },
   {
@@ -153,7 +153,7 @@ export const DUMMY_TRANSACTION = [
     floor: '10',
     unit: '10AA',
     resident: "Susi",
-    status: 'rented',
+    status: 'RENT',
     price: 'IDR 500000000',
     profit: 'IDR 30.000.000',
     transactionDate: '21 September 2022',
@@ -165,16 +165,30 @@ export const DUMMY_TRANSACTION = [
   {
     id: '3',
     floor: '10',
-    unit: '10AA',
-    resident: "Susi",
-    status: 'rented',
+    unit: '10BB',
+    resident: "Abdi",
+    status: 'SOLD',
     price: 'IDR 500000000',
     profit: 'IDR 10.000.000',
     transactionDate: '30 September 2022',
-    rentalSchema: 'monthly',
-    startEndDate: '30 September 2022 / 30 Desember 2022',
-    period: '3 months',
+    rentalSchema: '-',
+    startEndDate: '-',
+    period: '-',
     billingDate: '30 September 2022'
+  },
+  {
+    id: '4',
+    floor: '10',
+    unit: '10BA',
+    resident: "Abi",
+    status: 'RENT',
+    price: 'IDR 500000000',
+    profit: 'IDR 5.000.000',
+    transactionDate: '28 September 2022',
+    rentalSchema: 'monthly',
+    startEndDate: '29 September 2022 / 29 Desember 2022',
+    period: '3 months',
+    billingDate: '28 September 2022'
   }
 ]
 export const RESIDENT = [

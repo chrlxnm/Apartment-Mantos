@@ -39,9 +39,6 @@ const Transactions = () => {
             title: 'Status',
             dataIndex: 'status',
             key: 'status',
-            render: (status) => {
-                return <p>{status?'sold':'rent'}</p>
-            }
         },
         {
             title: 'Price',
