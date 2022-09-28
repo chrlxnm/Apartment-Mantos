@@ -1,10 +1,17 @@
 import { Button, Col, Form, Input as InputAntd, Row, Select as SelectAntd } from 'antd'
 
+import { APARTMENT_DIRECTION_OPTION } from '../../helpers/constant';
 import Modal from '../../components/Modal/Modal'
 import React from 'react'
 import styled from 'styled-components';
 
 function DetailModal({visible, handleCancel, handleOk, title, data}) {
+
+  const getDirection = (id) => {
+    const result = APARTMENT_DIRECTION_OPTION.filter((item)=>item.value===id)
+    return result.length? result[0]?.label : '-'
+  }
+
   return (
     <Modal 
     isModalVisible={visible}
@@ -41,7 +48,7 @@ function DetailModal({visible, handleCancel, handleOk, title, data}) {
                     <p className='labelField'>{data?.rooms || '-'}</p>
             </Col>
             <Col className="gutter-row" span={12}>
-                    <p className='labelField'>{data?.direction || '-'}</p>
+                    <p className='labelField'>{getDirection(data?.direction)}</p>
             </Col>
         </Row>
         <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>

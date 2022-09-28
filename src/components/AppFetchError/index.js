@@ -16,12 +16,12 @@ const AppFetchErrorProvider = (props) => {
         visible={modal?.visible}
         closable={false}
         footer={null}
-        style={{ top: '35%', width: 'max-content'}}
+        style={{ top: '35%'}}
         width={180}
       >
-      <div style={{justifyContent:'center'}}>
+      <div style={{textAlign:'center'}}>
         <h1> Error </h1>
-        <p>{modal?.message?.message}</p>
+        <p>{modal?.message}</p>
         <Button type='primary' shape='round' size='large' onClick={() => dispatch(hideModal())}>
           Close
         </Button>
