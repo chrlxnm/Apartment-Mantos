@@ -33,12 +33,12 @@ const Home = (props) => {
   const state = useSelector((storedState) => storedState.unit);
   let isLoading = useSelector((state) => state.loading.isLoading);
   const [loading, setLoading] = useState(false);
+  const [data, setData] = useState();
   const [modal, setModal] = useState({
     visible: false,
     title: "Detail Unit",
   });
   const [units, setUnits] = useState();
-  const [data, setData] = useState();
   const [page, setPage] = useState({
     size: 10,
     current: 1,
@@ -142,25 +142,6 @@ const Home = (props) => {
                   </ButtonFilter>
                   </WrapperSearchFilter>
                 </Col>
-                {/* <Col span={4}>
-                  <div className="btnGroup">
-                        <Button
-                        onClick={()=>downloadExcelData(dataSource,'daftarDomisili')}>
-                        Print
-                        </ Button>
-                      <ButtonPrimary
-                      style={{width: '88px'}} 
-                        onClick={()=> {
-                          setModal({
-                            visible: true,
-                            title: 'Add Data'
-                          })
-                        }}
-                      icon={<AiIcons.AiOutlinePlus />}>
-                        Add
-                      </ButtonPrimary>
-                  </div>
-                </Col>                   */}
             </Row>
         <Row gutter={16}>
           {data?.length? 
@@ -224,7 +205,8 @@ const Home = (props) => {
               span={24}
               style={{ marginTop: "1rem", marginBottom: "1rem" }}
             >
-          <Empty /></Col>}
+            <Empty />
+          </Col>}
         </Row>
         <Pagination
           style={{ marginBottom: "1rem" }}

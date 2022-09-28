@@ -28,7 +28,6 @@ class AppErrorBoundary extends React.Component {
             return (
                 <AppSiteLayoutWrapper>
                     <ErrorBoundaryContentWrapper>
-                        <Avatar size={64} src="https://joeschmoe.io/api/v1/random" />
                         <AppStdParagraph>Mohon Maaf, terjadi sebuah kesalahan.</AppStdParagraph>
                         <AppStdParagraph>Silahkan Refresh halaman</AppStdParagraph>
                     </ErrorBoundaryContentWrapper>
