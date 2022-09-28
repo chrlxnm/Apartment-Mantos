@@ -13,14 +13,14 @@ import { Link } from "react-router-dom";
 import React from "react";
 import Transactions from "./../../pages/Transactions/index";
 import { getCurrentTab } from "../../helpers/utils";
-import logoCB from "../../assets/image/logo.png";
+import logomantos from "../../assets/image/logomantos.png";
 import styled from "styled-components";
 
 const HeaderComponent = ({ onClick, setUserInfo }) => {
   const { Header } = Layout;
   return (
     <Header style={{ display: "flex", justifyContent: "space-between" }}>
-      <Logo src={logoCB} alt="Logo" className="img-core" />
+      <img src={logomantos} alt="Logo" className="img-core" />
       <Menu
         theme="dark"
         className="menu-custom"
@@ -42,7 +42,7 @@ const HeaderComponent = ({ onClick, setUserInfo }) => {
           },
           {
             key: "transactions",
-            icon: <UserOutlined />,
+            icon: <FileOutlined />,
             label: <Link to="transactions">Transactions</Link>,
           },
           {
