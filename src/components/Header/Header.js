@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 import React from 'react';
 import Transactions from './../../pages/Transactions/index';
 import { getCurrentTab } from '../../helpers/utils';
+import logoCB from "../../assets/image/logo.png";
 import styled from 'styled-components';
 
 const HeaderComponent =  ({ onClick, setUserInfo})  => {
@@ -16,6 +17,9 @@ const HeaderComponent =  ({ onClick, setUserInfo})  => {
 const { Header } = Layout;
     return (
         <Header style={{display: 'flex', justifyContent: 'space-between'}}>
+            
+            <Logo src={logoCB} alt='Logo' className='img-core'
+            />
             <Menu
                 theme="dark"
                 className='menu-custom'
@@ -54,3 +58,11 @@ const { Header } = Layout;
 };
 
 export default HeaderComponent;
+
+
+export const Logo =styled.img`
+max-width: 80%;
+max-height: 80%;
+margin-top: 2rem;
+margin-bottom: 1rem;
+`
