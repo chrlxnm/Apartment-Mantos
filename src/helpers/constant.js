@@ -170,11 +170,11 @@ export const DUMMY_TRANSACTION = [
     status: 'rented',
     price: 'IDR 500000000',
     profit: 'IDR 10.000.000',
-    transactionDate: '21 September 2022',
+    transactionDate: '30 September 2022',
     rentalSchema: 'monthly',
-    startEndDate: '21 September 2022 / 21 November 2022',
-    period: '2 months',
-    billingDate: '21 September 2022'
+    startEndDate: '30 September 2022 / 30 Desember 2022',
+    period: '3 months',
+    billingDate: '30 September 2022'
   }
 ]
 export const RESIDENT = [

@@ -85,9 +85,8 @@ const Transactions = () => {
             key: 'billingDate',
             sorter: (ascending, descending) => {
                 return ascending.billingDate < descending.billingDate
-        },
+            }}
     ]
-
     return (
         <>
         <GlobalWrapper>
