@@ -4,12 +4,23 @@ import React, { useEffect } from 'react'
 
 import Modal from '../../components/Modal/Modal'
 import styled from 'styled-components';
+import { updateUnits } from '../Report/services';
 
 function EditModal({visible, handleCancel ,handleOk, title, data}) {
     const [form] = Form.useForm();
     useEffect(()=>{
         form.setFieldsValue(data)
     }, [data])
+    const onFinish = (res) => {
+        let payload = {
+            id: data?.id,
+            ...res
+        }
+        handleOk()
+        updateUnits(payload)
+        .then(() => {
+        })
+    }
     return (
         <Modal 
         isModalVisible={visible}
@@ -17,7 +28,7 @@ function EditModal({visible, handleCancel ,handleOk, title, data}) {
         title={title}
         handleCancel={()=>{
             handleCancel()}}>
-            <Form form={form}>
+            <Form form={form} onFinish={onFinish}>
                 <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
                     <Col className="gutter-row" span={12} >
                             <h3 className='labelField'>Unit Code</h3>
@@ -188,7 +199,7 @@ function EditModal({visible, handleCancel ,handleOk, title, data}) {
                     </Col>
                 </Row>
                 <Row justify='center'>
-                    <Button onClick={handleOk}>
+                    <Button htmlType='submit'>
                         Terapkan
                     </Button>
                 </Row>

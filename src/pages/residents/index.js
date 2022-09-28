@@ -1,7 +1,8 @@
-import { GlobalWrapper } from "./../../components/Wrapper/index";
-import React, { useEffect, useState } from "react";
 import { Button, Table } from "antd";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
+import { GlobalWrapper } from "./../../components/Wrapper/index";
 import { getResidents } from "./services";
 
 const Residents = () => {
@@ -73,10 +74,10 @@ const Residents = () => {
   // ];
   return (
     <GlobalWrapper>
-      <Button size="large" type="info" shape="round">
+      <Button size="large" type="primary" shape="round">
         Add Residents
       </Button>
-      <Table columns={column} dataSource={residents} />
+      <Table style={{marginTop: '1rem'}} columns={column} dataSource={residents} />
     </GlobalWrapper>
   );
 };

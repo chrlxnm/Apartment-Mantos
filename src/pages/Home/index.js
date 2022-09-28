@@ -74,7 +74,7 @@ const Home = (props) => {
         dataPage(result.data, page);
       })
       .catch(() => {});
-  }, [dispatch, state.action]);
+  }, [dispatch, state.action, modalEdit]);
 
   const dataPage = (data, params) => {
     setLoading(true);

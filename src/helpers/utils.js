@@ -32,6 +32,8 @@ export const getCurrentTab = (path) => {
         return ["report"]
       case "/transactions":
         return ["transactions"]
+      case "/residents":
+        return ["residents"]
       default:
         return ["home"]  
     }    

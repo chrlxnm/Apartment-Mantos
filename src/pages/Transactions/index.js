@@ -4,9 +4,11 @@ import { PlusOutlined, SearchOutlined } from '@ant-design/icons';
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
+import DetailModal from "./DetailModal";
 import { GlobalWrapper } from "./../../components/Wrapper/index";
 import { ReactComponent as IconFilter1 } from '../../assets/svg/icon-filter1.svg';
 import { getTransactions } from "./services";
+import { getUnits } from "../Home/services";
 
 const Transactions = () => {
   const [transactions, setTransactions] = useState();
@@ -14,10 +16,15 @@ const Transactions = () => {
   //let isLoading = useSelector((state) => state.loading.isLoading);
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState();
+  const [units, setUnits] = useState();
   const [page, setPage] = useState({
     size: 10,
     current: 1,
     total: transactions ? transactions.length : 0,
+  });
+  const [modal, setModal] = useState({
+    visible: false,
+    title: "Detail Unit",
   });
   const dispatch = useDispatch();
   useEffect(() => {
@@ -27,8 +34,18 @@ const Transactions = () => {
         dataPage(result.data, page);
       })
       .catch(() => {});
+    getUnits()
+    .then((result) => {
+      setUnits(result.data);
+      dataPage(result.data, page);
+    })
+    .catch(() => {});
   }, [dispatch, state?.action]);
 
+  const getDetailUnit = (id) => {
+    let temp = units.filter((item)=> item.id === id)
+    return temp[0]
+  }
   const column = [
     {
       title: "#",
@@ -39,8 +56,14 @@ const Transactions = () => {
       title: "Unit ID",
       dataIndex: "unitId",
       key: "unitId",
+      render: (item, record) => (
+      <p style={{ cursor: 'pointer', textDecorationLine: 'underline', color: '#0062A6' }} onClick={()=> 
+        setModal({...modal, 
+          visible:true,
+          data: getDetailUnit(item)})}
+        >{item}
+        </p>)
     },
-    //{data?.status || '-'}
     {
       title: "Resident ID",
       dataIndex: "residentId",
@@ -118,9 +141,22 @@ const Transactions = () => {
   setPage(tempParams)
   setLoading(false)
   };
+  const handleOkModal = () => {
+    setModal({
+      ...modal,
+      visible: false,
+    });
+  };
 
   return (
     <GlobalWrapper>
+      <DetailModal
+        visible={modal?.visible}
+        data={modal?.data}
+        handleCancel={handleOkModal}
+        handleOk={handleOkModal}
+        title={modal?.title}
+      />
         <Row className="rowSearch">
             <Col span={20}>
               <WrapperSearchFilter>
