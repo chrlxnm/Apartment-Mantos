@@ -1,6 +1,6 @@
 import './style.css'
 
-import { FileOutlined, UserOutlined } from '@ant-design/icons';
+import { BankOutlined, FileOutlined, FundOutlined, LogoutOutlined, SnippetsOutlined, UserOutlined } from '@ant-design/icons';
 import { Layout, Menu } from 'antd';
 import { MdOutlineDashboard, MdOutlineIosShare, MdOutlinePayment } from "react-icons/md";
 
@@ -31,17 +31,17 @@ const { Header } = Layout;
                 items={[
                     {
                     key: 'home',
-                    icon: <MdOutlineDashboard />,
+                    icon: <BankOutlined />,
                     label: <Link to="home">Home</Link>,
                     },
                     {
                     key: 'report',
-                    icon: <FileOutlined />,
+                    icon: <SnippetsOutlined />,
                     label:  <Link to="report">Report</Link>,
                     },
                     {
                     key: 'transactions',
-                    icon: <UserOutlined />,
+                    icon: <FundOutlined />,
                     label: <Link to="transactions">Transactions</Link>,
                     },
                 ]}
@@ -49,9 +49,9 @@ const { Header } = Layout;
                 <Link to="/" onClick={()=>{
                         setUserInfo(null)
                         }}>
-                    <Button type='danger' shape='round'>
-                        Logout
-                    </Button>
+                    <ButtonLogout type='danger' shape='round' size='large'>
+                        <LogoutOutlined /> Logout
+                    </ButtonLogout>
                 </Link>
         </Header>
     );
@@ -63,6 +63,11 @@ export default HeaderComponent;
 export const Logo =styled.img`
 max-width: 80%;
 max-height: 80%;
-margin-top: 2rem;
-margin-bottom: 1rem;
+margin-top: 8px;
+`
+
+const ButtonLogout = styled(Button)`
+font-weight: 600;
+background-color: #b51402;
+border-color: #b51402;
 `
