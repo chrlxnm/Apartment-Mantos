@@ -51,8 +51,8 @@ const Report = () => {
         },
         {
             title: 'Action',
-            dataIndex: 'details',
-            key: 'details',
+            dataIndex: 'action',
+            key: 'action',
         },
     ]
 

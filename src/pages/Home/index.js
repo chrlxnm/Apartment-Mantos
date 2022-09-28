@@ -1,13 +1,23 @@
-import { Avatar, Breadcrumb, Button as ButtonAntd, Card, Col, Input as InputAntd, Pagination, Row, Skeleton } from "antd";
+import {
+  Avatar,
+  Breadcrumb,
+  Button as ButtonAntd,
+  Card,
+  Col,
+  Input as InputAntd,
+  Pagination,
+  Row,
+  Skeleton,
+} from "antd";
 import React, { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { DUMMY_LIST } from "./../../helpers/constant";
-import DetailModal from './DetailModal';
+import DetailModal from "./DetailModal";
 import EditModal from "./EditModal";
 import { GlobalWrapper } from "./../../components/Wrapper/index";
 import { fetchUnits } from "../../redux/reducer/unitsReducer";
-import { getUnits } from './services';
+import { getUnits } from "./services";
 import styled from "styled-components";
 import { useNavigate } from "react-router";
 
@@ -15,35 +25,33 @@ const { Meta } = Card;
 
 const Home = (props) => {
   const state = useSelector((storedState) => storedState.unit);
-  let isLoading = useSelector(
-    (state) => state.loading.isLoading,
-  );
+  let isLoading = useSelector((state) => state.loading.isLoading);
   const [modal, setModal] = useState({
     visible: false,
-    title: 'Detail Unit',
-  })
+    title: "Detail Unit",
+  });
   const [units, setUnits] = useState();
   const [modalEdit, setModalEdit] = useState({
     visible: false,
-  })
+  });
   const handleOkModal = () => {
     setModal({
       ...modal,
-      visible: false
-    })
-  }
+      visible: false,
+    });
+  };
   const handleOkModalEdit = () => {
     setModalEdit({
       ...modalEdit,
-      visible: false
-    })
-  }
+      visible: false,
+    });
+  };
   const handleCancelModal = () => {
     setModal({
       ...modal,
-      visible: false
-    })
-  }
+      visible: false,
+    });
+  };
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -51,33 +59,35 @@ const Home = (props) => {
       .then((result) => {
         setUnits(result.data);
       })
-      .catch(() => {
-      });
+      .catch(() => {});
   }, [dispatch, state.action]);
 
   return (
     <>
-      <DetailModal 
+      <DetailModal
         visible={modal?.visible}
         data={modal?.data}
         handleCancel={handleCancelModal}
         handleOk={handleOkModal}
-        title={modal?.title} 
+        title={modal?.title}
       />
-      <EditModal 
+      <EditModal
         visible={modalEdit?.visible}
         data={modalEdit?.data}
         handleCancel={handleOkModalEdit}
         handleOk={handleOkModalEdit}
-        title={modalEdit?.title} 
+        title={modalEdit?.title}
       />
       <GlobalWrapper>
         <h1 className="justify-content-center align-items-center">
           Apartment Units
         </h1>
-        <Row style={{gap: '1rem'}}>
+        <Row style={{ gap: "1rem" }}>
           <Input placeholder="Pencarian" />
-          <Button style={{width: 240}} type='primary'> Cari </Button>
+          <Button style={{ width: 240 }} type="primary">
+            {" "}
+            Cari{" "}
+          </Button>
         </Row>
         <Row gutter={16}>
           {isLoading ?
@@ -111,8 +121,8 @@ const Home = (props) => {
                 }
               >
                 <Meta
-                  title="Apartment Unit"
-                  description="Apartment Detail Desc"
+                  title={<h2>Apartment Unit : {item?.unitCode}</h2>}
+                  description={<h3>Status : {item?.status}</h3>} 
                 />
                 <Wrapper>
                   <Button 
@@ -156,14 +166,14 @@ const Wrapper = styled.div`
   display: flex;
   gap: 1rem;
   justify-content: center;
-`
+`;
 const Input = styled(InputAntd)`
   height: 50px;
   width: 30%;
   border-radius: 16px;
-`
+`;
 const Button = styled(ButtonAntd)`
   height: 50px;
   border-radius: 16px;
   font-weight: 600;
-`
+`;
