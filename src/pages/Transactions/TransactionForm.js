@@ -42,13 +42,6 @@ const TransactionForm = () => {
     form.resetFields();
   };
 
-  const onFill = () => {
-    form.setFieldsValue({
-      note: "Hello world!",
-      gender: "male",
-    });
-  };
-
   return (
     <Form {...layout} form={form} name="control-hooks" onFinish={onFinish}>
       <Form.Item
@@ -144,7 +137,8 @@ const TransactionForm = () => {
             >
               <Input
                 value={DUMMY_LIST.map((item) => {
-                  if (getFieldValue === item.rooms) {
+                  let temp = getFieldValue("apartemen");
+                  if ((item.rooms = temp)) {
                     return item.sellPrice;
                   }
                 })}
@@ -159,9 +153,6 @@ const TransactionForm = () => {
         </Button>
         <Button htmlType="button" onClick={onReset}>
           Reset
-        </Button>
-        <Button type="link" htmlType="button" onClick={onFill}>
-          Fill form
         </Button>
       </Form.Item>
     </Form>
