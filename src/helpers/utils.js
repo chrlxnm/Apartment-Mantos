@@ -23,16 +23,16 @@ export function useUserInfo() {
 }
 
 export const getCurrentTab = (path) => {
-  switch (path) {
-    case "/home":
-      return ["home"];
-    case "/report":
-      return ["report"];
-    case "/transactions":
-      return ["transactions"];
-    case "/residents":
-      return ["residents"];
-    default:
-      return ["home"];
+    switch (path) {
+      case "/home":
+        return ["home"]
+      case "/report":
+        return ["report"]
+      case "/transactions":
+        return ["transactions"]
+      case "/residents":
+        return ["residents"]
+      default:
+        return ["home"]  
+    }    
   }
-};

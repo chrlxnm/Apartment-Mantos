@@ -11,7 +11,7 @@ const AppLoadingProvider = (props) => {
         visible={isLoading}
         closable={false}
         footer={null}
-        style={{ top: '35%'}}
+        style={{ top: '35%',zIndex:9999}}
         width={180}
       >
       <div style={{display:'flex',justifyContent:'center'}}>

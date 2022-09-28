@@ -25,6 +25,7 @@ export const WrapperPagination = styled.div`
 export const WrapperSearchFilter = styled.div`
 gap: 8px;
 display: flex;
+align-items: center;
 `
 
 export const WrapperSelect = styled.div` 

@@ -35,7 +35,7 @@ export default function LoginPage(props) {
     serviceLogin(payload)
     .then((response) => {
       console.log('response login', response)
-      props?.setUserInfo({token:'YWRtaW46YWRtaW4='})
+      props?.setUserInfo({token:response?.data?.token})
     })
   };
 

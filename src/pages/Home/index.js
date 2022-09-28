@@ -39,12 +39,12 @@ const Home = (props) => {
   const state = useSelector((storedState) => storedState.unit);
   let isLoading = useSelector((state) => state.loading.isLoading);
   const [loading, setLoading] = useState(false);
+  const [data, setData] = useState();
   const [modal, setModal] = useState({
     visible: false,
     title: "Detail Unit",
   });
   const [units, setUnits] = useState();
-  const [data, setData] = useState();
   const [page, setPage] = useState({
     size: 10,
     current: 1,
@@ -80,7 +80,7 @@ const Home = (props) => {
         dataPage(result.data, page);
       })
       .catch(() => {});
-  }, [dispatch, state.action]);
+  }, [dispatch, state.action, modalEdit]);
 
   const dataPage = (data, params) => {
     setLoading(true);

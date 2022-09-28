@@ -1,15 +1,15 @@
 import { AppContentWrapper, AppFooter, AppFooterWrapper } from '../AppContentWrapper/style';
+import { Avatar, Layout } from 'antd';
 
 import { AppHeaderWrapper } from './style';
-import { Layout } from 'antd';
 
 // import logoCB from "../../assets/images/cb-logo.svg";
 
 const AppSiteLayoutWrapper = ({ children }) => {
     return (
         <Layout>
-            <AppHeaderWrapper>
-                <img src={'logoCB'} alt='logo' style={{ width: '3rem' }} />
+            <AppHeaderWrapper> 
+                <Avatar size={64} src="https://joeschmoe.io/api/v1/random" />
             </AppHeaderWrapper>
             <AppContentWrapper>
                 {children}

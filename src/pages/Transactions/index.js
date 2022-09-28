@@ -1,22 +1,50 @@
-import { GlobalWrapper } from "./../../components/Wrapper/index";
+import { ButtonFilter, WrapperSearchFilter } from "../Home/styled";
+import { Col, Input, Row, Table } from "antd";
+import { PlusOutlined, SearchOutlined } from '@ant-design/icons';
 import React, { useEffect, useState } from "react";
-import { Table } from "antd";
 import { useDispatch, useSelector } from "react-redux";
+
+import DetailModal from "./DetailModal";
+import { GlobalWrapper } from "./../../components/Wrapper/index";
+import { ReactComponent as IconFilter1 } from '../../assets/svg/icon-filter1.svg';
 import { getTransactions } from "./services";
+import { getUnits } from "../Home/services";
 
 const Transactions = () => {
+  const [transactions, setTransactions] = useState();
   const state = useSelector((storedState) => storedState.transaction);
   //let isLoading = useSelector((state) => state.loading.isLoading);
-  const [transactions, setTransactions] = useState();
+  const [loading, setLoading] = useState(false);
+  const [data, setData] = useState();
+  const [units, setUnits] = useState();
+  const [page, setPage] = useState({
+    size: 10,
+    current: 1,
+    total: transactions ? transactions.length : 0,
+  });
+  const [modal, setModal] = useState({
+    visible: false,
+    title: "Detail Unit",
+  });
   const dispatch = useDispatch();
   useEffect(() => {
     getTransactions()
       .then((result) => {
         setTransactions(result.data);
+        dataPage(result.data, page);
       })
       .catch(() => {});
-  }, [dispatch, state?.action]);
+    getUnits()
+    .then((result) => {
+      setUnits(result.data);
+    })
+    .catch(() => {});
+  }, []);
 
+  const getDetailUnit = (id) => {
+    let temp = units.filter((item)=> item.id === id)
+    return temp[0]
+  }
   const column = [
     {
       title: "#",
@@ -27,12 +55,25 @@ const Transactions = () => {
       title: "Unit ID",
       dataIndex: "unitId",
       key: "unitId",
+      render: (item, record) => (
+      <p style={{ cursor: 'pointer', textDecorationLine: 'underline', color: '#0062A6' }} onClick={()=> 
+        setModal({...modal, 
+          visible:true,
+          data: getDetailUnit(item)})}
+        >{item}
+        </p>)
     },
-    //{data?.status || '-'}
     {
       title: "Resident ID",
       dataIndex: "residentId",
       key: "residentId",
+      render: (item, record) => (
+      <p style={{ cursor: 'pointer', textDecorationLine: 'underline', color: '#0062A6' }} onClick={()=> 
+        setModal({...modal, 
+          visible:true,
+          data: getDetailUnit(item)})}
+        >{item}
+        </p>)
     },
     {
       title: "Transaction Date",
@@ -77,21 +118,71 @@ const Transactions = () => {
       render: (record, item) => <p>{item?.profit || "-"}</p>,
     },
   ];
-  // const dataSource = [
-  //   transactions.id,
-  //   transactions.unitId,
-  //   transactions.residentId,
-  //   transactions?.transactionDate || "Not Yet",
-  //   transactions?.startDate || "Not yet",
-  //   transactions?.endDate || "Not yet",
-  //   transactions?.billingDate || "Not yet",
-  //   transactions?.period || "Not yet",
-  //   transactions.price,
-  //   transactions.profit,
-  // ];
+
+  const dataPage = (data, params) => {
+    setLoading(true);
+    setData(data?.slice((params.current-1)* params.size, params.current * params.size));
+    setLoading(false);
+  }
+  
+  const handleSearch = (e) => {
+    setLoading(true)
+    let searchValue = e.target.value
+    let columns = ['profit', 'price'];
+    let temp = transactions.filter((item) => {
+      return columns.some((newItem) => {
+          return (
+              item[newItem]
+                  ?.toString()
+                  ?.toLowerCase()
+                  ?.indexOf(searchValue.toLowerCase()) > -1
+                );
+            });
+          });
+  let tempParams = {...page,
+            current: 1,
+            total: temp.length
+          }
+  dataPage(temp, tempParams)
+  setPage(tempParams)
+  setLoading(false)
+  };
+  const handleOkModal = () => {
+    setModal({
+      ...modal,
+      visible: false,
+    });
+  };
+
   return (
     <GlobalWrapper>
-      <Table columns={column} dataSource={transactions} />
+      <DetailModal
+        visible={modal?.visible}
+        data={modal?.data}
+        handleCancel={handleOkModal}
+        handleOk={handleOkModal}
+        title={modal?.title}
+      />
+        <Row className="rowSearch">
+            <Col span={20}>
+              <WrapperSearchFilter>
+            <Input 
+              placeholder='Cari disini'
+              size='large'
+              className="daftarpenggunaSearchBox"
+              onChange={handleSearch}
+              prefix={<SearchOutlined />}
+              />
+              <ButtonFilter 
+              // onClick={()=> setFilterModal(true)}
+                >
+                <IconFilter1 style={{marginRight: 'unset !important'}} />
+              </ButtonFilter>
+
+              </WrapperSearchFilter>
+            </Col>
+        </Row>
+      <Table style={{marginTop: '1rem'}} loading={loading} columns={column} dataSource={data} />
     </GlobalWrapper>
   );
 };
