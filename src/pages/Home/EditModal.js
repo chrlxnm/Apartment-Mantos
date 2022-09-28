@@ -10,7 +10,6 @@ function EditModal({visible, handleCancel ,handleOk, title, data}) {
     useEffect(()=>{
         form.setFieldsValue(data)
     }, [data])
-    console.log(data)
     return (
         <Modal 
         isModalVisible={visible}

@@ -2,6 +2,7 @@ import './index.css';
 
 import App from './App';
 import AppErrorBoundary from './pages/AppErrorBoundary';
+import AppLoadingProvider from './components/AppLoading';
 import { Provider } from 'react-redux';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
@@ -10,13 +11,13 @@ import store from './redux/store/index';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  // <React.StrictMode>
-    <AppErrorBoundary>
-      <Provider store={store}>
-        <App />
-      </Provider>
-    </AppErrorBoundary>
-  // </React.StrictMode>
+    <Provider store={store}>
+      <AppErrorBoundary>
+        <AppLoadingProvider>
+            <App />
+        </AppLoadingProvider>
+      </AppErrorBoundary>
+    </Provider>
 );
 
 // If you want to start measuring performance in your app, pass a function

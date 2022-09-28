@@ -1,5 +1,8 @@
 import * as React from "react";
+
 import { Avatar, Button as ButtonAntd, Carousel, Col, Form, Input as InputAntd, Row, Typography } from "antd";
+
+import { serviceLogin } from "./services";
 import styled from "styled-components";
 
 function Copyright(props) {
@@ -23,13 +26,17 @@ function Copyright(props) {
 export default function LoginPage(props) {
   const [form] = Form.useForm();
 
+  
   const handleSubmit = (event) => {
-    console.log({
-      username: event.name,
+    const payload = {
+      username: event.username,
       password: event.password,
-    });
-    
-    props?.setUserInfo({token:'YWRtaW46YWRtaW4='})
+    }
+    serviceLogin(payload)
+    .then((response) => {
+      console.log('response login', response)
+      props?.setUserInfo({token:'YWRtaW46YWRtaW4='})
+    })
   };
 
   const imgCarousel = {
@@ -69,11 +76,12 @@ export default function LoginPage(props) {
                 layout="vertical"
                 style={{width: '80%'}}
                 autoComplete='off'>
-              <Avatar
-            size={64} src="https://joeschmoe.io/api/v1/random" />
+            <div style={{textAlign: 'center'}}>
+            <Avatar size={64} src="https://joeschmoe.io/api/v1/random" />
             <Typography component="h1" variant="h5">
               Login
             </Typography>
+            </div>
             <Form.Item 
               label='Username'
               name={'username'}
