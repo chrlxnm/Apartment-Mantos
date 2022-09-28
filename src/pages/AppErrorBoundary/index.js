@@ -1,5 +1,6 @@
 import AppSiteLayoutWrapper from '../../components/AppSiteLayoutWrapper/AppSiteLayoutWrapper';
 import { AppStdParagraph } from '../../components/AppSiteLayoutWrapper/style';
+import { Avatar } from 'antd';
 import { ErrorBoundaryContentWrapper } from './style';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -27,6 +28,7 @@ class AppErrorBoundary extends React.Component {
             return (
                 <AppSiteLayoutWrapper>
                     <ErrorBoundaryContentWrapper>
+                        <Avatar size={64} src="https://joeschmoe.io/api/v1/random" />
                         <AppStdParagraph>Mohon Maaf, terjadi sebuah kesalahan.</AppStdParagraph>
                         <AppStdParagraph>Silahkan Refresh halaman</AppStdParagraph>
                     </ErrorBoundaryContentWrapper>

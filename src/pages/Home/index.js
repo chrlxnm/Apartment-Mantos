@@ -1,14 +1,21 @@
+import * as AiIcons from 'react-icons/ai';
+import * as FaIcons from 'react-icons/fa';
+import * as FiIcons from 'react-icons/fi';
+
 import {
   Avatar,
   Breadcrumb,
   Button as ButtonAntd,
   Card,
   Col,
+  Empty,
   Input as InputAntd,
   Pagination,
   Row,
   Skeleton,
 } from "antd";
+import { ButtonFilter, WrapperPagination, WrapperSearchFilter, WrapperSelect, styleBtnDownload } from "./styled.js";
+import { PlusOutlined, SearchOutlined } from '@ant-design/icons';
 import React, { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -16,21 +23,27 @@ import { DUMMY_LIST } from "./../../helpers/constant";
 import DetailModal from "./DetailModal";
 import EditModal from "./EditModal";
 import { GlobalWrapper } from "./../../components/Wrapper/index";
-import { fetchUnits } from "../../redux/reducer/unitsReducer";
+import { ReactComponent as IconFilter1 } from '../../assets/svg/icon-filter1.svg';
 import { getUnits } from "./services";
 import styled from "styled-components";
-import { useNavigate } from "react-router";
 
 const { Meta } = Card;
 
 const Home = (props) => {
   const state = useSelector((storedState) => storedState.unit);
   let isLoading = useSelector((state) => state.loading.isLoading);
+  const [loading, setLoading] = useState(false);
   const [modal, setModal] = useState({
     visible: false,
     title: "Detail Unit",
   });
   const [units, setUnits] = useState();
+  const [data, setData] = useState();
+  const [page, setPage] = useState({
+    size: 10,
+    current: 1,
+    total: units ? units.length : 0,
+  });
   const [modalEdit, setModalEdit] = useState({
     visible: false,
   });
@@ -58,9 +71,39 @@ const Home = (props) => {
     getUnits()
       .then((result) => {
         setUnits(result.data);
+        dataPage(result.data, page);
       })
       .catch(() => {});
   }, [dispatch, state.action]);
+
+  const dataPage = (data, params) => {
+    setLoading(true);
+    setData(data?.slice((params.current-1)* params.size, params.current * params.size));
+    setLoading(false);
+  }
+  
+  const handleSearch = (e) => {
+    setLoading(true)
+    let searchValue = e.target.value
+    let columns = ['unitCode'];
+    let temp = units.filter((item) => {
+      return columns.some((newItem) => {
+          return (
+              item[newItem]
+                  .toString()
+                  .toLowerCase()
+                  .indexOf(searchValue.toLowerCase()) > -1
+                );
+            });
+          });
+  let tempParams = {...page,
+            current: 1,
+            total: temp.length
+          }
+  dataPage(temp, tempParams)
+  setPage(tempParams)
+  setLoading(false)
+  };
 
   return (
     <>
@@ -82,15 +125,46 @@ const Home = (props) => {
         <h1 className="justify-content-center align-items-center">
           Apartment Units
         </h1>
-        <Row style={{ gap: "1rem" }}>
-          <Input placeholder="Pencarian" />
-          <Button style={{ width: 240 }} type="primary">
-            {" "}
-            Cari{" "}
-          </Button>
-        </Row>
+            <Row className="rowSearch">
+                <Col span={20}>
+                  <WrapperSearchFilter>
+                <Input 
+                  placeholder='Cari disini'
+                  size='large'
+                  className="daftarpenggunaSearchBox"
+                  onChange={handleSearch}
+                  prefix={<SearchOutlined />}
+                  />
+                  <ButtonFilter 
+                  // onClick={()=> setFilterModal(true)}
+                    >
+                    <IconFilter1 style={{marginRight: 'unset !important'}} />
+                  </ButtonFilter>
+                  </WrapperSearchFilter>
+                </Col>
+                {/* <Col span={4}>
+                  <div className="btnGroup">
+                        <Button
+                        onClick={()=>downloadExcelData(dataSource,'daftarDomisili')}>
+                        Print
+                        </ Button>
+                      <ButtonPrimary
+                      style={{width: '88px'}} 
+                        onClick={()=> {
+                          setModal({
+                            visible: true,
+                            title: 'Add Data'
+                          })
+                        }}
+                      icon={<AiIcons.AiOutlinePlus />}>
+                        Add
+                      </ButtonPrimary>
+                  </div>
+                </Col>                   */}
+            </Row>
         <Row gutter={16}>
-          {isLoading ?
+          {data?.length? 
+          isLoading || loading ?
             ([1,2,3].map(item => <Col
               xs={24}
               sm={24}
@@ -101,7 +175,7 @@ const Home = (props) => {
             >
               <Card loading={true} />
             </Col>)) :
-          (units?.map((item, idx) => (
+          data?.map((item, idx) => (
             <Col
               xs={24}
               sm={24}
@@ -145,7 +219,12 @@ const Home = (props) => {
                 </Wrapper>
               </Card>
             </Col>
-          )))}
+          )) : 
+          <Col
+              span={24}
+              style={{ marginTop: "1rem", marginBottom: "1rem" }}
+            >
+          <Empty /></Col>}
         </Row>
         <Pagination
           style={{ marginBottom: "1rem" }}
